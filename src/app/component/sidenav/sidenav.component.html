@@ -1,0 +1,23 @@
+ <mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <h2>Admin Panel</h2>
+    <mat-nav-list>
+      <mat-list-item>
+        <mat-icon>people</mat-icon>
+        <button mat-button routerLink="/users">View Users</button>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon>add_circle</mat-icon>
+        <button mat-button routerLink="/add-user">Add User</button>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon>edit</mat-icon>
+        <button mat-button routerLink="/update-user/1">Update User</button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

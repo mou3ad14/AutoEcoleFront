@@ -1,0 +1,43 @@
+<mat-card class="update-user-card">
+  <h2>Modifier Utilisateur</h2>
+  <form [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>prénom</mat-label>
+      <input matInput formControlName="firstname" required>
+      <mat-error *ngIf="updateUserForm?.get('firstname')?.hasError('required')">
+        prénom est obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>nom</mat-label>
+      <input matInput formControlName="lastname" required>
+      <mat-error *ngIf="updateUserForm?.get('lastname')?.hasError('required')">
+        nom est obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" required>
+      <mat-error *ngIf="updateUserForm?.get('email')?.hasError('required')">
+        Email est obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="role" required>
+        <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="updateUserForm?.get('role')?.hasError('required')">
+        role est obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="!updateUserForm?.valid">Enregistrer</button>
+      <button mat-raised-button color="warn" type="button" (click)="onCancel()">Annuler</button>
+    </div>
+  </form>
+</mat-card>

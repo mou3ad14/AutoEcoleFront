@@ -1,0 +1,46 @@
+/* Sidenav Container Styles */
+.sidenav-container {
+  height: 100%;
+  width: 100%;
+}
+
+/* Side Navigation Styles */
+.sidenav {
+  background: linear-gradient(to bottom right, #cd1777, #00008b);
+  color: white;
+  padding: 20px;
+}
+
+.sidenav h2 {
+  color: #fff;
+  text-align: center;
+}
+
+mat-nav-list {
+  padding: 0;
+}
+
+mat-list-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+}
+
+mat-icon {
+  margin-right: 10px;
+  color: #fff;
+}
+
+button {
+  color: #fff;
+  text-align: left;
+}
+
+button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.main-content {
+  padding: 20px;
+  margin-left: 250px;
+}

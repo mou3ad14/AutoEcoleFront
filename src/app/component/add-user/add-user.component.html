@@ -1,0 +1,103 @@
+<!-- <mat-card class="add-user-card">
+  <h2><mat-icon>person_add</mat-icon> Ajouter Nouveau Utilisateur</h2>
+  <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>prénom</mat-label>
+      <input matInput formControlName="firstname" />
+      <mat-error *ngIf="addUserForm.controls['firstname'].hasError('required')">
+        prénom est obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>nom</mat-label>
+      <input matInput formControlName="lastname" />
+      <mat-error *ngIf="addUserForm.controls['lastname'].hasError('required')">
+        nom est obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" />
+      <mat-error *ngIf="addUserForm.controls['email'].hasError('email')">
+        S'il vous plaît, mettez une adresse email valide
+      </mat-error>
+      <mat-error *ngIf="addUserForm.controls['email'].hasError('required')">
+        Email est obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput formControlName="password" type="password" />
+      <mat-error *ngIf="addUserForm.controls['password'].hasError('required')">
+        Mot de passe est obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="role">
+        <mat-option *ngFor="let role of roles" [value]="role">{{ role }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="addUserForm.invalid">
+      <mat-icon>save</mat-icon> Ajouter Utilisateur
+    </button>
+  </form>
+</mat-card> -->
+
+
+
+<mat-card class="add-user-card">
+  <h2><mat-icon>person_add</mat-icon> Ajouter Nouveau Utilisateur</h2>
+  <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Prénom</mat-label>
+      <input matInput formControlName="firstname" />
+      <mat-error *ngIf="addUserForm.controls['firstname'].hasError('required')">
+        Prénom est obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nom</mat-label>
+      <input matInput formControlName="lastname" />
+      <mat-error *ngIf="addUserForm.controls['lastname'].hasError('required')">
+        Nom est obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" />
+      <mat-error *ngIf="addUserForm.controls['email'].hasError('email')">
+        S'il vous plaît, mettez une adresse email valide
+      </mat-error>
+      <mat-error *ngIf="addUserForm.controls['email'].hasError('required')">
+        Email est obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput formControlName="password" type="password" />
+      <mat-error *ngIf="addUserForm.controls['password'].hasError('required')">
+        Mot de passe est obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Role</mat-label>
+      <mat-select formControlName="role">
+        <mat-option *ngFor="let role of roles$ | async" [value]="role">{{ role }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="addUserForm.invalid">
+      <mat-icon>save</mat-icon> Ajouter Utilisateur
+    </button>
+  </form>
+</mat-card>
