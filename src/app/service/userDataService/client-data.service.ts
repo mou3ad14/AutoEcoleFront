@@ -42,9 +42,8 @@ export class ClientDataService {
 
   getUserRoles(): Observable<string[]> {
     console.log('Token stored:', localStorage.getItem('token'));
-    const token = localStorage.getItem('token');  
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${localStorage.getItem('token')}`
+      'Authorization': `Bearer ${localStorage.getItem('access_token')}`
     });
    
     return this.http.get<string[]>(this.apiUrl, { headers });
