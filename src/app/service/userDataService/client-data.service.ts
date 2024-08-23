@@ -41,13 +41,12 @@ export class ClientDataService {
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getUserRoles(): Observable<string[]> {
-    const token = this.authService.getToken();  // Use AuthService to get the token
-    console.log(token);
-    
+    console.log('Token stored:', localStorage.getItem('token'));
+    const token = localStorage.getItem('token');  
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
-    console.log(token);
+   
     return this.http.get<string[]>(this.apiUrl, { headers });
   }
 }
