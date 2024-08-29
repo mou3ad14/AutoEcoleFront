@@ -82,6 +82,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClientDataService } from 'src/app/service/userDataService/client-data.service';
 import { AuthService } from 'src/app/service/authService/auth-service.service';  // Adjust the path as necessary
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router'; // Import Router
 
 @Component({
   selector: 'app-add-user',
@@ -92,7 +93,7 @@ export class AddUserComponent implements OnInit {
   addUserForm!: FormGroup;
   roles$: Observable<string[]> | undefined;
 
-  constructor(private fb: FormBuilder, private clientDataService: ClientDataService, private authService: AuthService) {}
+  constructor(private fb: FormBuilder, private clientDataService: ClientDataService,private router: Router) {}
 
   ngOnInit(): void {
     // Fetch roles from the API
@@ -110,8 +111,16 @@ export class AddUserComponent implements OnInit {
 
   onSubmit(): void {
     if (this.addUserForm.valid) {
-      console.log('Form Data:', this.addUserForm.value);
-      // Handle form submission here
+      this.clientDataService.registerUser(this.addUserForm.value).subscribe(
+        (response) => {
+          console.log('User added successfully:', response);
+          // Redirect to the view all users page
+          this.router.navigate(['/users']);
+        },
+        (error) => {
+          console.error('Error adding user:', error);
+        }
+      );
     }
   }
 }

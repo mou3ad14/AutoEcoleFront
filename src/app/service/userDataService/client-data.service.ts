@@ -1,42 +1,16 @@
-// import { Injectable } from '@angular/core';
-// import { HttpClient,HttpHeaders } from '@angular/common/http';
-// import { Observable } from 'rxjs';
-
-// @Injectable({
-//   providedIn: 'root'
-// })
-// export class ClientDataService {
-
-// private apiUrl='http://localhost:8083/api/v1/users/role';
-
-//    constructor(private http:HttpClient) { }
-
-//   // getRoles() : Observable<any> {
-//   //     return this.http.get<any>(`${this.apiUrl}`)
-//   // }
-
-//   getUserRoles(): Observable<string[]> {
-//     const token = localStorage.getItem('token');
-//     console.log(token);
-//     // Or sessionStorage
-//     const headers = new HttpHeaders({
-//       'Authorization': `Bearer ${token}`
-//     });
-//     console.log(token);
-
-//     return this.http.get<string[]>(this.apiUrl, { headers });
-//   }
-// }
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../authService/auth-service.service';
+import { User } from 'src/app/model/user';
 @Injectable({
   providedIn: 'root'
 })
 export class ClientDataService {
   private apiUrl = 'http://localhost:8083/api/v1/users/role';
+  private apiUrl1 = 'http://localhost:8083/api/v2/user/all';
+  private apiUrl2 = 'http://localhost:8083/api/v1/auth/register';
+  private apiUrlDelete = 'http://localhost:8083/api/v2/user/delete';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -48,4 +22,44 @@ export class ClientDataService {
    
     return this.http.get<string[]>(this.apiUrl, { headers });
   }
+
+  getAllUsers(): Observable<User[]> {
+    const token = localStorage.getItem('access_token');  
+
+    if (!token) {
+      throw new Error('No access token found');
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<User[]>(this.apiUrl1, { headers });
+    
+  }
+
+  registerUser(user: User): Observable<any> {
+    const token = localStorage.getItem('access_token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post<any>(this.apiUrl2, user, { headers });
+  }
+
+  deleteUserById(email: string): Observable<void> {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      throw new Error('No access token found');
+    }
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.delete<void>(`${this.apiUrlDelete}/${email}`, { headers });
+  }
+
 }
