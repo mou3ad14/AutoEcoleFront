@@ -1,10 +1,8 @@
-/* Sidenav Container Styles */
 .sidenav-container {
   height: 100%;
   width: 100%;
 }
 
-/* Side Navigation Styles */
 .sidenav {
   background: linear-gradient(to bottom right, #cd1777, #00008b);
   color: white;

@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddUserComponent } from './component/add-user/add-user.component';
 import { UserListComponent } from './component/user-list/user-list.component';
-import { UpdateUserComponent } from './component/update-user/update-user.component';
+import { UpdateUserComponent } from './component/update-client/update-client.component';
 import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { LayoutComponent } from './component/layout/layout.component';
 import { LoginComponent } from './component/login/login.component';
+import { AddClientComponent } from './component/add-client/add-client.component';
+import { ClientListComponent } from './component/client-list/client-list.component';
+import { ClientProbableListComponent } from './component/client-probable-list/client-probable-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -20,7 +23,14 @@ const routes: Routes = [
       
       { path: 'users', component: UserListComponent },
       { path: 'add-user', component: AddUserComponent },
-      { path: 'update-user/:id', component: UpdateUserComponent },
+      { path: 'add-client', component: AddClientComponent },
+      { path: 'clients', component: ClientListComponent },
+      { path: 'clients/update/:id', component: UpdateUserComponent },
+      { path: 'clients/add', component: AddClientComponent },
+      {path:'clientProbable/list',component:ClientProbableListComponent}
+
+      
+      
     ]
   }
 ];

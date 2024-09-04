@@ -7,11 +7,11 @@ import { User } from 'src/app/model/user';
   providedIn: 'root'
 })
 export class ClientDataService {
-  private apiUrl = 'http://localhost:8083/api/v1/users/role';
-  private apiUrl1 = 'http://localhost:8083/api/v2/user/all';
-  private apiUrl2 = 'http://localhost:8083/api/v1/auth/register';
-  private apiUrlDelete = 'http://localhost:8083/api/v2/user/delete';
-
+  private apiUrl = 'http://localhost:8084/api/v1/users/role';
+  private apiUrl1 = 'http://localhost:8084/api/v2/user/all';
+  private apiUrl2 = 'http://localhost:8084/api/v1/auth/register';
+  private apiUrlDelete = 'http://localhost:8084/api/v2/user/delete';
+  private baseUrl3 = 'http://localhost:8084/api/v1';
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getUserRoles(): Observable<string[]> {
@@ -21,6 +21,16 @@ export class ClientDataService {
     });
    
     return this.http.get<string[]>(this.apiUrl, { headers });
+  }
+
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('access_token'); 
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  }
+  getAgences(): Observable<any[]> {  
+    return this.http.get<any[]>(`${this.baseUrl3}/agences`, { headers: this.getAuthHeaders() });
   }
 
   getAllUsers(): Observable<User[]> {

@@ -1,0 +1,14 @@
+.search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.client-list {
+  margin-top: 16px;
+}

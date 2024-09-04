@@ -1,0 +1,133 @@
+<!-- add-client.component.html
+<mat-card class="add-client-card">
+  <h2><mat-icon>person_add</mat-icon> Ajouter Nouveau Client</h2>
+  <form [formGroup]="addClientForm" (ngSubmit)="onSubmit()">
+    <mat-horizontal-stepper [linear]="true">
+      <mat-step [stepControl]="addClientForm.get('nom')!.value">
+        <ng-template matStepLabel>Informations Personnelles</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="nom" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Prénom</mat-label>
+          <input matInput formControlName="prenom" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>CIN</mat-label>
+          <input matInput formControlName="cin" />
+        </mat-form-field>
+        <button mat-button matStepperNext>SUIVANT</button>
+      </mat-step>
+
+      <mat-step [stepControl]="addClientForm.get('adresse')!.value">
+        <ng-template matStepLabel>Informations de Contact</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Adresse</mat-label>
+          <input matInput formControlName="adresse" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Téléphone</mat-label>
+          <input matInput formControlName="telephone" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" />
+        </mat-form-field>
+        <button mat-button matStepperPrevious>RETOUR</button>
+        <button mat-button matStepperNext>SUIVANT</button>
+      </mat-step>
+
+      <mat-step [stepControl]="addClientForm.get('dateInscription')!.value">
+        <ng-template matStepLabel>Détails d'Inscription</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Date d'Inscription</mat-label>
+          <input matInput formControlName="dateInscription" type="date" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Agence d'Inscription</mat-label>
+          <input matInput formControlName="agenceInscription" />
+        </mat-form-field>
+        <button mat-button matStepperPrevious>RETOUR</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="addClientForm.invalid">
+          <mat-icon>save</mat-icon> Ajouter Client
+        </button>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </form>
+</mat-card> -->
+
+
+<mat-card class="add-client-card">
+  <h2><mat-icon>person_add</mat-icon> Ajouter Nouveau Client</h2>
+  <form [formGroup]="addClientForm" (ngSubmit)="onSubmit()">
+    <mat-horizontal-stepper [linear]="true">
+      <mat-step [stepControl]="getControl('nom')">
+        <ng-template matStepLabel>Informations Personnelles</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="nom" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Prénom</mat-label>
+          <input matInput formControlName="prenom" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>CIN</mat-label>
+          <input matInput formControlName="cin" />
+        </mat-form-field>
+        <button mat-button matStepperNext>SUIVANT</button>
+      </mat-step>
+
+      <mat-step [stepControl]="getControl('adresse')">
+        <ng-template matStepLabel>Informations de Contact</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Date de Naissance</mat-label>
+          <input matInput formControlName="dateNaissance" type="date" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Lieu de Naissance</mat-label>
+          <input matInput formControlName="lieuNaissance" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Adresse</mat-label>
+          <input matInput formControlName="adresse" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Téléphone</mat-label>
+          <input matInput formControlName="telephone" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" />
+        </mat-form-field>
+        <button mat-button matStepperPrevious>RETOUR</button>
+        <button mat-button matStepperNext>SUIVANT</button>
+      </mat-step>
+
+      <mat-step [stepControl]="getControl('dateInscription')">
+        <ng-template matStepLabel>Détails d'Inscription</ng-template>
+        <mat-form-field appearance="fill">
+          <mat-label>Date d'Inscription</mat-label>
+          <input matInput formControlName="dateInscription" type="date" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Prix Total</mat-label>
+          <input matInput formControlName="prixTotal" type="number" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Agence</mat-label>
+          <mat-select formControlName="agenceId">
+            <mat-option *ngFor="let agence of agences$ | async" [value]="agence.id">
+              {{ agence.id }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-button matStepperPrevious>RETOUR</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="addClientForm.invalid">
+          <mat-icon>save</mat-icon> Ajouter Client
+        </button>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </form>
+</mat-card>

@@ -17,11 +17,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { UserListComponent } from './component/user-list/user-list.component';
 import { MatTableModule } from '@angular/material/table';
-import { UpdateUserComponent } from './component/update-user/update-user.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutComponent } from './component/layout/layout.component';
+import { MainPageComponent } from './component/main-page/main-page.component';
+import { AddClientComponent } from './component/add-client/add-client.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { ClientListComponent } from './component/client-list/client-list.component';
+import { UpdateUserComponent } from './component/update-client/update-client.component';
+import { ClientProbableListComponent } from './component/client-probable-list/client-probable-list.component';
+import { ClientSearchbarComponent } from './component/client-searchbar/client-searchbar.component';
 
 @NgModule({
   declarations: [
@@ -31,8 +37,13 @@ import { LayoutComponent } from './component/layout/layout.component';
     SidenavComponent,
     AddUserComponent,
     UserListComponent,
+    LayoutComponent,
+    MainPageComponent,
+    AddClientComponent,
+    ClientListComponent,
     UpdateUserComponent,
-    LayoutComponent
+    ClientProbableListComponent,
+    ClientSearchbarComponent
   ],
   imports: [
     
@@ -51,7 +62,8 @@ import { LayoutComponent } from './component/layout/layout.component';
     MatTableModule,
     FormsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

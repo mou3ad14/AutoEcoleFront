@@ -1,0 +1,16 @@
+<div class="search-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Search Client</mat-label>
+    <input matInput (keyup)="onSearchChange($event)" placeholder="Search by name or CIN">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Filter by CIN</mat-label>
+    <mat-select (selectionChange)="onFilterChange($event.value)">
+      <mat-option *ngFor="let cin of cinOptions" [value]="cin">
+        {{ cin }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
