@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8084/api/v1/auth';
+  private apiUrl = 'http://localhost:8080/api/v1/auth';
   
 
 
@@ -19,6 +19,8 @@ export class AuthService {
         // Store the tokens in localStorage
         localStorage.setItem('access_token', response.access_token);
         localStorage.setItem('refresh_token', response.refresh_token);
+        localStorage.setItem('role', response.role);
+        localStorage.setItem('agence', response.agence);
       })
     );
   }

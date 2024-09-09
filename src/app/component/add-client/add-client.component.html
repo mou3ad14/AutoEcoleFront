@@ -116,6 +116,10 @@
           <input matInput formControlName="prixTotal" type="number" />
         </mat-form-field>
         <mat-form-field appearance="fill">
+          <mat-label>avance</mat-label>
+          <input matInput formControlName="montant" type="number" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
           <mat-label>Agence</mat-label>
           <mat-select formControlName="agenceId">
             <mat-option *ngFor="let agence of agences$ | async" [value]="agence.id">

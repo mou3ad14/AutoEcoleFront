@@ -37,7 +37,6 @@ export class UpdateUserComponent implements OnInit {
       dateNaissance: ['', Validators.required],
       lieuNaissance: ['', Validators.required],
       dateInscription: ['', Validators.required],
-      agenceInscription: ['', Validators.required],
       prixTotal: ['', Validators.required],
     });
 

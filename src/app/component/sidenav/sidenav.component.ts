@@ -6,7 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent {
+  isAdmin: boolean = false;
+
+  ngOnInit() {
+    const role = localStorage.getItem('role');
+    this.isAdmin = role === 'admin'; 
+  }
   logout() {
+    
 
   }
 }

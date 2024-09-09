@@ -9,7 +9,7 @@ import { ClientProbable } from 'src/app/model/clientProbable';
 
 
 export class ClientProbableService {
-  private apiUrl = 'http://localhost:8084/api/clientprobables';
+  private apiUrl = 'http://localhost:8080/api/clientprobables';
   constructor(private http: HttpClient) { }
 
 

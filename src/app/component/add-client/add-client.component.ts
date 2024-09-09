@@ -210,7 +210,8 @@ export class AddClientComponent implements OnInit {
       typeClient: ['NORMAL', Validators.required],
       dateInscription: ['', Validators.required],
       prixTotal: [0, Validators.required],
-      agenceId: ['', Validators.required]
+      agenceId: ['', Validators.required],
+      montant:[0, Validators.required]
     });
   }
 
