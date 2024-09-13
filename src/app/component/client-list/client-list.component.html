@@ -1,41 +1,11 @@
-<!-- <div class="client-list">
-  <table mat-table [dataSource]="clients" class="mat-elevation-z8">
-    <ng-container matColumnDef="nom">
-      <th mat-header-cell *matHeaderCellDef> Nom </th>
-      <td mat-cell *matCellDef="let client"> {{client.nom}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="prenom">
-      <th mat-header-cell *matHeaderCellDef> Prénom </th>
-      <td mat-cell *matCellDef="let client"> {{client.prenom}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="cin">
-      <th mat-header-cell *matHeaderCellDef> CIN </th>
-      <td mat-cell *matCellDef="let client"> {{client.cin}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="telephone">
-      <th mat-header-cell *matHeaderCellDef> Téléphone </th>
-      <td mat-cell *matCellDef="let client"> {{client.telephone}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef> Actions </th>
-      <td mat-cell *matCellDef="let client">
-        <button mat-button routerLink="clients/update/:id" (click)="onUpdateClient(client.id)">Mettre à jour</button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="['nom', 'prenom', 'cin', 'telephone', 'actions']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['nom', 'prenom', 'cin', 'telephone', 'actions'];"></tr>
-  </table>
-</div> -->
-
-
-
 <div class="client-list">
-  <table mat-table [dataSource]="clients" class="mat-elevation-z8">
+  <mat-form-field class="example-full-width">
+    <mat-label>Search by CIN</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Enter CIN" />
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
     <ng-container matColumnDef="nom">
       <th mat-header-cell *matHeaderCellDef> Nom </th>
       <td mat-cell *matCellDef="let client"> {{client.nom}} </td>
@@ -56,14 +26,20 @@
       <td mat-cell *matCellDef="let client"> {{client.telephone}} </td>
     </ng-container>
 
+    <!-- Actions Column with Conditional Button Display -->
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let client">
-        <button mat-button routerLink="clients/update/:id" (click)="onUpdateClient(client.cin)">Mettre à jour</button>
+        <!-- Show the 'Mettre à jour' button only for admin users -->
+        <button *ngIf="isAdmin" mat-button (click)="onUpdateClient(client.cin)">Mettre à jour</button>
+
+        <!-- Show the 'View Details' button for non-admin users -->
+        <button *ngIf="!isAdmin" mat-button (click)="onViewClientDetails(client.cin)">View Details</button>
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="['nom', 'prenom', 'cin', 'telephone', 'actions']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['nom', 'prenom', 'cin', 'telephone', 'actions'];"></tr>
+    <!-- Header and Row Definitions -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </div>

@@ -28,6 +28,8 @@ import { ClientListComponent } from './component/client-list/client-list.compone
 import { UpdateUserComponent } from './component/update-client/update-client.component';
 import { ClientProbableListComponent } from './component/client-probable-list/client-probable-list.component';
 import { ClientSearchbarComponent } from './component/client-searchbar/client-searchbar.component';
+import { ClientDetailsDialogComponent } from './component/client-details-dialog/client-details-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { ClientSearchbarComponent } from './component/client-searchbar/client-se
     ClientListComponent,
     UpdateUserComponent,
     ClientProbableListComponent,
-    ClientSearchbarComponent
+    ClientSearchbarComponent,
+    ClientDetailsDialogComponent
   ],
   imports: [
     
@@ -63,7 +66,8 @@ import { ClientSearchbarComponent } from './component/client-searchbar/client-se
     FormsModule,
     RouterModule,
     HttpClientModule,
-    MatStepperModule
+    MatStepperModule,
+    MatDialogModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

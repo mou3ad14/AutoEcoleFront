@@ -4,32 +4,32 @@
     <mat-nav-list>
       <mat-list-item *ngIf="isAdmin" >
         <mat-icon>people</mat-icon>
-        <button mat-button routerLink="/users">View Users</button>
+        <button mat-button routerLink="/users">Staff</button>
       </mat-list-item>
 
       <mat-list-item>
         <mat-icon>people</mat-icon>
-        <button mat-button routerLink="/clients">View Clients</button>
+        <button mat-button routerLink="/clients">Clients</button>
       </mat-list-item>
 
       <mat-list-item  *ngIf="isAdmin">
         <mat-icon>add_circle</mat-icon>
-        <button mat-button routerLink="/clientProbable/list">View Clients Probables</button>
+        <button mat-button routerLink="/clientProbable/list">Clients Probables</button>
       </mat-list-item>
 
       <mat-list-item  *ngIf="isAdmin">
         <mat-icon>add_circle</mat-icon>
-        <button mat-button routerLink="/add-user">Add User</button>
+        <button mat-button routerLink="/add-user">Ajouter un Membre de staff</button>
       </mat-list-item>
 
       <mat-list-item>
         <mat-icon>add_circle</mat-icon>
-        <button mat-button routerLink="/add-client">Add Client</button>
+        <button mat-button routerLink="/add-client">Ajouter un client</button>
       </mat-list-item>
 
       <mat-list-item  *ngIf="isAdmin">
         <mat-icon>edit</mat-icon>
-        <button mat-button routerLink="/update-user/1">Update User</button>
+        <button mat-button routerLink="/update-user/1">Mettre à jour</button>
       </mat-list-item>
 
       <mat-list-item>
