@@ -32,6 +32,16 @@
         <button mat-button routerLink="/update-user/1">Mettre à jour</button>
       </mat-list-item>
 
+      <mat-list-item  *ngIf="isAdmin">
+        <mat-icon>attach_money</mat-icon>
+        <button mat-button routerLink="/update-user/1">Etats de caisses</button>
+      </mat-list-item>
+
+      <mat-list-item  *ngIf="!isAdmin">
+        <mat-icon>account_balance_wallet</mat-icon>
+        <button mat-button routerLink="/update-user/1">Mon etat de caisse</button>
+      </mat-list-item>
+
       <mat-list-item>
         <mat-icon>exit_to_app</mat-icon>
         <button mat-button (click)="logout()">Logout</button>

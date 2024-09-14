@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-sidenav',
@@ -7,13 +9,15 @@ import { Component } from '@angular/core';
 })
 export class SidenavComponent {
   isAdmin: boolean = false;
+  constructor(private router: Router) {}
+
 
   ngOnInit() {
     const role = localStorage.getItem('role');
     this.isAdmin = role === 'admin'; 
   }
   logout() {
-    
-
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }
