@@ -30,6 +30,7 @@ import { ClientProbableListComponent } from './component/client-probable-list/cl
 import { ClientSearchbarComponent } from './component/client-searchbar/client-searchbar.component';
 import { ClientDetailsDialogComponent } from './component/client-details-dialog/client-details-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { EtatDeCaisseListComponent } from './etat-de-caisse-list/etat-de-caisse-list.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     UpdateUserComponent,
     ClientProbableListComponent,
     ClientSearchbarComponent,
-    ClientDetailsDialogComponent
+    ClientDetailsDialogComponent,
+    EtatDeCaisseListComponent
   ],
   imports: [
     

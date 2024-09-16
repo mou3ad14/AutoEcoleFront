@@ -9,6 +9,7 @@ import { LoginComponent } from './component/login/login.component';
 import { AddClientComponent } from './component/add-client/add-client.component';
 import { ClientListComponent } from './component/client-list/client-list.component';
 import { ClientProbableListComponent } from './component/client-probable-list/client-probable-list.component';
+import { EtatDeCaisseListComponent } from './etat-de-caisse-list/etat-de-caisse-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -27,7 +28,8 @@ const routes: Routes = [
       { path: 'clients', component: ClientListComponent },
       { path: 'clients/update/:id', component: UpdateUserComponent },
       { path: 'clients/add', component: AddClientComponent },
-      {path:'clientProbable/list',component:ClientProbableListComponent}
+      {path:'clientProbable/list',component:ClientProbableListComponent},
+      {path: 'etatDeCaisse', component:EtatDeCaisseListComponent}
 
       
       

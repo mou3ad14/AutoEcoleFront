@@ -34,7 +34,7 @@
         <button *ngIf="isAdmin" mat-button (click)="onUpdateClient(client.cin)">Mettre à jour</button>
 
         <!-- Show the 'View Details' button for non-admin users -->
-        <button *ngIf="!isAdmin" mat-button (click)="onViewClientDetails(client.cin)">View Details</button>
+        <button *ngIf="!isAdmin" mat-button (click)="onViewClientDetails(client.cin)">Détail client</button>
       </td>
     </ng-container>
 

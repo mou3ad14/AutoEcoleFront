@@ -72,4 +72,33 @@ export class ClientDataService {
     return this.http.delete<void>(`${this.apiUrlDelete}/${email}`, { headers });
   }
 
+  GetEtatDeCaisseCda(): Observable<any> {
+    const agence = localStorage.getItem('agence');
+    const token = localStorage.getItem('access_token');
+  
+    if (!token) {
+      throw new Error('No access token found');
+    }
+  
+    if (!agence) {
+      throw new Error('Agence is not defined');
+    }
+  
+    const today = new Date();
+    const date = today.toISOString().split('T')[0]; 
+  
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  
+    const url = `${this.baseUrl3}/etatDeCaisse/${agence}/${date}`;
+  
+    return this.http.get<any[]>(url, {
+      headers: headers
+    });
+  }
+  
+  
+  
+
 }

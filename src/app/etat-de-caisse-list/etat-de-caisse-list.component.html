@@ -1,0 +1,35 @@
+<div *ngIf="etatDeCaisseList.length === 0">
+    No data available.
+  </div>
+  
+  <div *ngIf="etatDeCaisseList.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Montant Total</th>
+          <th>Status</th>
+          <th>Agence</th>
+          <th>Paiements</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let etat of etatDeCaisseList">
+          <td>{{ etat.id }}</td>
+          <td>{{ etat.date }}</td>
+          <td>{{ etat.montantTotal }}</td>
+          <td>{{ etat.status }}</td>
+          <td>{{ etat.agence.intituleAgence }} - {{ etat.agence.villeAgence }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let paiement of etat.paiements">
+                ID: {{ paiement.id }}, Montant: {{ paiement.montant }}, Heure: {{ paiement.heurePaiement }}
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

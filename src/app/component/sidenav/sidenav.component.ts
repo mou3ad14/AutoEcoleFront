@@ -9,12 +9,15 @@ import { Router } from '@angular/router';
 })
 export class SidenavComponent {
   isAdmin: boolean = false;
+  agence: any =0;
   constructor(private router: Router) {}
 
 
   ngOnInit() {
     const role = localStorage.getItem('role');
+    const agence = localStorage.getItem('agence');
     this.isAdmin = role === 'admin'; 
+    this.agence = agence;
   }
   logout() {
     localStorage.clear();
