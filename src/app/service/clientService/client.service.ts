@@ -93,4 +93,20 @@ export class ClientService {
   getAgences(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl3}/agences`, { headers: this.getAuthHeaders() });
   }
+
+  addPaiementToClient(clientId: number, montant: number): Observable<any> {
+    const paiement = {
+      montant: montant,
+      heurePaiement: new Date().toISOString() // Set the current date and time
+    };
+
+    return this.http.post(`${this.apiUrl}/${clientId}/paiements`, paiement, { headers: this.getAuthHeaders() });
+  }
+
+  addSeanceTheoriqueToClient(clientCin: string): Observable<any> {
+    const seanceTheorique = new Date().toISOString(); // Set the current date and time
+
+    return this.http.put(`${this.apiUrl}/${clientCin}/seances-theoriques`, seanceTheorique,
+       { headers: this.getAuthHeaders() });
+  }
 }
