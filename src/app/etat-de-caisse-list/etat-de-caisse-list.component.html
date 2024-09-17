@@ -1,12 +1,16 @@
+<div>
+  <h3>Solde: {{ solde | number:'1.2-2' }} MAD</h3>
+</div>
+
+
 <div *ngIf="etatDeCaisseList.length === 0">
-    No data available.
+    Aucune état de caisse d'aujourd'hui
   </div>
   
   <div *ngIf="etatDeCaisseList.length > 0">
     <table>
       <thead>
         <tr>
-          <th>ID</th>
           <th>Date</th>
           <th>Montant Total</th>
           <th>Status</th>
@@ -16,7 +20,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let etat of etatDeCaisseList">
-          <td>{{ etat.id }}</td>
           <td>{{ etat.date }}</td>
           <td>{{ etat.montantTotal }}</td>
           <td>{{ etat.status }}</td>
@@ -24,12 +27,14 @@
           <td>
             <ul>
               <li *ngFor="let paiement of etat.paiements">
-                ID: {{ paiement.id }}, Montant: {{ paiement.montant }}, Heure: {{ paiement.heurePaiement }}
+                 Montant: {{ paiement.montant }}, <br>
+                  Heure: {{ paiement.heurePaiement }}
               </li>
             </ul>
           </td>
         </tr>
       </tbody>
     </table>
+
   </div>
-  
+ 

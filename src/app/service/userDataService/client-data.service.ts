@@ -185,4 +185,22 @@ export class ClientDataService {
     return this.http.get<any[]>(url, { headers });
   }
 
+  getSoldeAgence(): Observable<any> {
+    const agence = localStorage.getItem('agence');
+    const token = localStorage.getItem('access_token');
+  
+    if (!token) {
+      throw new Error('No access token found');
+    }
+  
+    if (!agence) {
+      throw new Error('Agence is not defined');
+    }
+    
+    const headers = this.getAuthHeaders();
+    const url = `${this.baseUrl3}/etatDeCaisse/solde/${agence}`;
+  
+    return this.http.get<any[]>(url, { headers });
+  }
+
 }
