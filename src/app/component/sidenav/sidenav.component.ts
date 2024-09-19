@@ -16,7 +16,7 @@ export class SidenavComponent {
   ngOnInit() {
     const role = localStorage.getItem('role');
     const agence = localStorage.getItem('agence');
-    this.isAdmin = role === 'admin'; 
+    this.isAdmin = role === 'ADMIN'; 
     this.agence = agence;
   }
   logout() {
