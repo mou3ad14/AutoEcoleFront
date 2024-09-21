@@ -99,8 +99,6 @@ export class ClientDataService {
   }
 
   
-  // Method to get EtatDeCaisse by agence and date
-
   getEtatDeCaisseByAgenceAndDate(agenceId: number, date: string): Observable<any[]> {
     const headers = this.getAuthHeaders();
     const url = `${this.baseUrl3}/etatDeCaisse/${agenceId}/${date}`;
