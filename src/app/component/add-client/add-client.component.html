@@ -119,14 +119,7 @@
           <mat-label>avance</mat-label>
           <input matInput formControlName="montant" type="number" />
         </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Agence</mat-label>
-          <mat-select formControlName="agenceId">
-            <mat-option *ngFor="let agence of agences$ | async" [value]="agence.id">
-              {{ agence.id }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        
         <button mat-button matStepperPrevious>RETOUR</button>
         <button mat-raised-button color="primary" type="submit" [disabled]="addClientForm.invalid">
           <mat-icon>save</mat-icon> Ajouter Client

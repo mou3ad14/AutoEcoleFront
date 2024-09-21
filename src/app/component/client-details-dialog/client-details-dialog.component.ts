@@ -65,13 +65,14 @@ export class ClientDetailsDialogComponent {
       data: { id: this.data.id } // Pass any relevant data here
     });
 
+    
+
     dialogRef.afterClosed().subscribe((montant) => {
       if (montant) {
         this.clientService.addPaiementToClient(this.data.id, montant)
           .subscribe(
             (response) => {
               console.log('Paiement added:', response);
-              // Optionally refresh data or update UI
             },
             (error) => {
               console.error('Error adding paiement:', error);
@@ -80,6 +81,9 @@ export class ClientDetailsDialogComponent {
       }
     });
   }
+
+ 
+  
 
   // Method to handle adding a theoretical session
   addSeanceTheorique(): void {

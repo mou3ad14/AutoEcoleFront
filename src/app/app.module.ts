@@ -33,6 +33,7 @@ import { ClientDetailsDialogComponent } from './component/client-details-dialog/
 import { MatDialogModule } from '@angular/material/dialog';
 import { EtatDeCaisseListComponent } from './etat-de-caisse-list/etat-de-caisse-list.component';
 import { PaymentDialogComponent } from './component/payment-dialog/payment-dialog.component';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -82,7 +83,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatNativeDateModule,
     MatDatepickerModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
