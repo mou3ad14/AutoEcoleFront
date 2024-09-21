@@ -10,6 +10,7 @@ import { SidenavComponent } from './component/sidenav/sidenav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { AddUserComponent } from './component/add-user/add-user.component';
+import {EtatFinanciereComponent} from './component/etat-financiere/etat-financiere.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -31,7 +32,13 @@ import { ClientSearchbarComponent } from './component/client-searchbar/client-se
 import { ClientDetailsDialogComponent } from './component/client-details-dialog/client-details-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { EtatDeCaisseListComponent } from './etat-de-caisse-list/etat-de-caisse-list.component';
+import { PaymentDialogComponent } from './component/payment-dialog/payment-dialog.component';
 
+
+
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
     
@@ -48,7 +55,9 @@ import { EtatDeCaisseListComponent } from './etat-de-caisse-list/etat-de-caisse-
     ClientProbableListComponent,
     ClientSearchbarComponent,
     ClientDetailsDialogComponent,
-    EtatDeCaisseListComponent
+    EtatDeCaisseListComponent,
+    PaymentDialogComponent,
+    EtatFinanciereComponent
   ],
   imports: [
     
@@ -69,7 +78,9 @@ import { EtatDeCaisseListComponent } from './etat-de-caisse-list/etat-de-caisse-
     RouterModule,
     HttpClientModule,
     MatStepperModule,
-    MatDialogModule 
+    MatDialogModule,
+    MatNativeDateModule,
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

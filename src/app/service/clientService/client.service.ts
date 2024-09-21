@@ -109,4 +109,6 @@ export class ClientService {
     return this.http.put(`${this.apiUrl}/${clientCin}/seances-theoriques`, seanceTheorique,
        { headers: this.getAuthHeaders() });
   }
+
+   
 }

@@ -1,0 +1,17 @@
+.container {
+  padding: 20px;
+}
+
+mat-form-field {
+  margin-right: 20px;
+  width: 300px;
+}
+
+button {
+  margin-top: 20px;
+}
+
+.mat-table {
+  margin-top: 20px;
+  width: 100%;
+}
