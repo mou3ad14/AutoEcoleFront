@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from '../authService/auth-service.service';
 import { User } from 'src/app/model/user';
 import { environment } from '../../../environment';  // Import the environment
+import { EtatDeCaisseResponse } from 'src/app/model/EtatDeCaisseResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -59,8 +60,7 @@ export class ClientDataService {
     return this.http.delete<void>(`${this.apiUrlDelete}/${email}`, { headers });
   }
 
-  // Get EtatDeCaisseCda (Cash State for CDA) for the current day
-  GetEtatDeCaisseCda(): Observable<any> {
+  GetEtatDeCaisseCda(): Observable<EtatDeCaisseResponse> {
     const agence = localStorage.getItem('agence');
     const token = localStorage.getItem('access_token');
   
@@ -73,12 +73,12 @@ export class ClientDataService {
     }
   
     const today = new Date();
-    const date = today.toISOString().split('T')[0]; 
+    const date = today.toISOString().split('T')[0];
   
     const headers = this.getAuthHeaders();
     const url = `${this.baseUrl3}/etatDeCaisse/${agence}/${date}`;
   
-    return this.http.get<any[]>(url, { headers });
+    return this.http.get<EtatDeCaisseResponse>(url, { headers });
   }
 
   getSoldeAgence(): Observable<any> {
@@ -100,8 +100,6 @@ export class ClientDataService {
   }
 
   
-  // Method to get EtatDeCaisse by agence and date
-
   getEtatDeCaisseByAgenceAndDate(agenceId: number, date: string): Observable<any[]> {
     const headers = this.getAuthHeaders();
     const url = `${this.baseUrl3}/etatDeCaisse/${agenceId}/${date}`;

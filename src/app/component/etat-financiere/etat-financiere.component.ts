@@ -73,6 +73,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ClientDataService } from '../../service/userDataService/client-data.service'; // Your service
 import { MatTableDataSource } from '@angular/material/table';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-etat-financiere',
@@ -88,7 +89,7 @@ export class EtatFinanciereComponent implements OnInit {
   agenceControl = new FormControl();
   dateControl = new FormControl();
 
-  constructor(private clientDataService: ClientDataService) {}
+  constructor(private clientDataService: ClientDataService,  private datePipe: DatePipe) {}
 
   ngOnInit(): void {
     this.loadAgences(); // Load agencies on init
@@ -109,12 +110,12 @@ export class EtatFinanciereComponent implements OnInit {
   // Fetch Etat de Caisse by agence and date
   searchEtatDeCaisse(): void {
     const agenceId = this.agenceControl.value;
-    const date = this.dateControl.value?.toISOString().split('T')[0]; // Format date as YYYY-MM-DD
-
+    const date = this.datePipe.transform(this.dateControl.value, 'yyyy-MM-dd');
+    
     if (agenceId && date) {
       this.clientDataService.getEtatDeCaisseByAgenceAndDate(agenceId, date).subscribe(
         (data) => {
-          this.dataSource.data = data; // Set data for table
+          this.dataSource.data = data; 
         },
         (error) => {
           console.error('Failed to fetch etat de caisse', error);

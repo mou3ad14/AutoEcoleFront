@@ -1,59 +1,6 @@
-// import { Component, OnInit } from '@angular/core';
-// import { HttpClient } from '@angular/common/http';
-// import { ClientDataService } from '../service/userDataService/client-data.service';
-
-// @Component({
-//   selector: 'app-etat-de-caisse-list',
-//   templateUrl: './etat-de-caisse-list.component.html',
-//   styleUrls: ['./etat-de-caisse-list.component.css']
-// })
-// export class EtatDeCaisseListComponent implements OnInit {
-//   etatDeCaisseList: any[] = []; // Define the array to hold the fetched data
-//   agence: number | null = null;
-//   todayDate: string = '';
-//   solde: number = 0;
-
-//   constructor(private http: HttpClient,     private clientDataService: ClientDataService,  ) {}
-
-//   ngOnInit(): void {
-//       this.fetchEtatDeCaisse();
-//       this.fetchSolde();
-//   }
-
- 
-
-//   fetchEtatDeCaisse(): void {
-//     this.clientDataService.GetEtatDeCaisseCda().subscribe(
-//       (response) => {
-//         this.etatDeCaisseList = response;
-//         console.log(this.etatDeCaisseList); // Optional: For debugging to verify data
-//       },
-//       (error) => {
-//         console.error('Error fetching Etat De Caisse:', error);
-//       }
-//     );
-//   }
-
-//   fetchSolde(): void 
-//   {
-//     this.clientDataService.getSoldeAgence().subscribe(
-//       (response) => {
-//         this.solde = response;
-//         console.log(this.solde); 
-//       },
-//       (error) => {
-//         console.error('Error fetching Etat De Caisse:', error);
-//       }
-//     );
-
-//   }
-// }
-
-
-
-
 import { Component, OnInit } from '@angular/core';
 import { ClientDataService } from '../service/userDataService/client-data.service';
+import { EtatDeCaisse } from '../model/EtatDeCaisse';
 
 @Component({
   selector: 'app-etat-de-caisse-list',
@@ -61,9 +8,9 @@ import { ClientDataService } from '../service/userDataService/client-data.servic
   styleUrls: ['./etat-de-caisse-list.component.css']
 })
 export class EtatDeCaisseListComponent implements OnInit {
-  etatDeCaisseList: any[] = []; // Array to hold fetched data
-  displayedColumns: string[] = ['date', 'montantTotal', 'status', 'agence', 'paiements']; // Columns to display
-  solde: number = 0; // Balance
+  etatDeCaisse: EtatDeCaisse | null = null;
+  displayedColumns: string[] = ['date', 'montantTotal', 'status', 'paiements'];
+  solde: number = 0;
 
   constructor(private clientDataService: ClientDataService) {}
 
@@ -72,12 +19,11 @@ export class EtatDeCaisseListComponent implements OnInit {
     this.fetchSolde();
   }
 
-  // Fetch EtatDeCaisse data
   fetchEtatDeCaisse(): void {
     this.clientDataService.GetEtatDeCaisseCda().subscribe(
       (response) => {
-        this.etatDeCaisseList = response;
-        console.log(this.etatDeCaisseList); // Optional: For debugging to verify data
+        this.etatDeCaisse = response;
+        console.log(this.etatDeCaisse);
       },
       (error) => {
         console.error('Error fetching Etat De Caisse:', error);
@@ -85,12 +31,11 @@ export class EtatDeCaisseListComponent implements OnInit {
     );
   }
 
-  // Fetch Solde (Balance)
   fetchSolde(): void {
     this.clientDataService.getSoldeAgence().subscribe(
       (response) => {
         this.solde = response;
-        console.log(this.solde); // Optional: For debugging to verify data
+        console.log(this.solde);
       },
       (error) => {
         console.error('Error fetching Solde:', error);

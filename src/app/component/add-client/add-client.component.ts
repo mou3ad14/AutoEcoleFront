@@ -206,17 +206,17 @@ export class AddClientComponent implements OnInit {
       lieuNaissance: ['', Validators.required],
       adresse: ['', Validators.required],
       telephone: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', Validators.email],
       typeClient: ['NORMAL', Validators.required],
       dateInscription: ['', Validators.required],
-      prixTotal: [0, Validators.required],
-      agenceId: ['', Validators.required],
-      montant:[0, Validators.required]
+      prixTotal: [, Validators.required],
+      agenceId: [localStorage.getItem('agence'), Validators.required],
+      montant:[, Validators.required]
     });
   }
 
   getControl(controlName: string): AbstractControl {
-    return this.addClientForm.get(controlName)!; // Use non-null assertion operator
+    return this.addClientForm.get(controlName)!;
   }
 
   onSubmit(): void {

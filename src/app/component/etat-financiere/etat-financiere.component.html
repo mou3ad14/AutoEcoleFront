@@ -2,7 +2,7 @@
   <mat-form-field>
     <mat-label>Agence</mat-label>
     <mat-select [formControl]="agenceControl">
-      <mat-option *ngFor="let agence of agences" [value]="agence.id">{{ agence.name }}</mat-option>
+      <mat-option *ngFor="let agence of agences" [value]="agence.id">{{ agence.intituleAgence }}</mat-option>
     </mat-select>
   </mat-form-field>
 

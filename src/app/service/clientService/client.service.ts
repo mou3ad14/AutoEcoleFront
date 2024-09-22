@@ -66,7 +66,8 @@ export class ClientService {
   private getAuthHeaders(): HttpHeaders {
     const token = localStorage.getItem('access_token'); 
     return new HttpHeaders({
-      'Authorization': token ? `Bearer ${token}` : ''
+      'Authorization': token ? `Bearer ${token}` : '',
+      'Content-Type': 'application/json' 
     });
   }
 
@@ -97,17 +98,19 @@ export class ClientService {
   addPaiementToClient(clientId: number, montant: number): Observable<any> {
     const paiement = {
       montant: montant,
-      heurePaiement: new Date().toISOString() // Set the current date and time
+      heurePaiement: new Date().toISOString() 
     };
 
-    return this.http.post(`${this.apiUrl}/${clientId}/paiements`, paiement, { headers: this.getAuthHeaders() });
+    return this.http.post(`${this.apiUrl}/${clientId}/paiements`, JSON.stringify(paiement)
+    , { headers: this.getAuthHeaders() });
   }
 
   addSeanceTheoriqueToClient(clientCin: string): Observable<any> {
-    const seanceTheorique = new Date().toISOString(); // Set the current date and time
-
-    return this.http.put(`${this.apiUrl}/${clientCin}/seances-theoriques`, seanceTheorique,
-       { headers: this.getAuthHeaders() });
+    const seanceTheoriqueRequest = {
+      seanceTheorique: new Date().toISOString()
+    };
+    return this.http.put(`${this.apiUrl}/${clientCin}/seances-theoriques`, seanceTheoriqueRequest,
+      { headers: this.getAuthHeaders() });
   }
 
    
