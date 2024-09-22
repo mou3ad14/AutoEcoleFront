@@ -17,6 +17,7 @@ export class ClientDataService {
   private apiUrl2 = `${environment.apiUrl}/v1/auth/register`; // For registering users
   private apiUrlDelete = `${environment.apiUrl}/v2/user/delete`; // For deleting users
   private baseUrl3 = `${environment.apiUrl}/v1`;  // General base URL for v1 endpoints
+  private apiUrlh = 'http://localhost:8083/api/v1/agences';  // Adjust the URL if necessary
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -113,7 +114,9 @@ export class ClientDataService {
     return this.http.get<any[]>(url, { headers });
   }
   
-
+  getAllAgences(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrlh);
+  }
 
 
 

@@ -36,7 +36,7 @@ import { PaymentDialogComponent } from './component/payment-dialog/payment-dialo
 
 
 
-
+import { ClientProbableFormComponent } from './component/client-probable-form/client-probable-form.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
@@ -57,7 +57,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     ClientDetailsDialogComponent,
     EtatDeCaisseListComponent,
     PaymentDialogComponent,
-    EtatFinanciereComponent
+    EtatFinanciereComponent,
+    ClientProbableFormComponent
   ],
   imports: [
     

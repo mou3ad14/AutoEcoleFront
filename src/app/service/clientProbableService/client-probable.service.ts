@@ -1,26 +1,75 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ClientProbable } from 'src/app/model/clientProbable';
-import { environment } from '../../../environment';  
+// import { HttpClient, HttpHeaders } from '@angular/common/http';
+// import { Injectable } from '@angular/core';
+// import { Observable } from 'rxjs';
+// import { ClientProbable } from 'src/app/model/clientProbable';
+// import { environment } from '../../../environment';  
+
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class ClientProbableService {
+//   private apiUrl = environment.apiUrl;  
+
+//   constructor(private http: HttpClient) { }
+
+//   private getAuthHeaders(): HttpHeaders {
+//     const token = localStorage.getItem('access_token'); 
+//     return new HttpHeaders({
+//       'Authorization': `Bearer ${token}`
+//     });
+//   }
+
+//   getClientProbables(): Observable<ClientProbable[]> {
+//     const url = `${this.apiUrl}/clientprobables`;  
+//     return this.http.get<ClientProbable[]>(url, { headers: this.getAuthHeaders() });
+//   }
+// }
+
+
+ import { HttpClient, HttpHeaders } from '@angular/common/http';
+ import { Injectable } from '@angular/core';
+ import { Observable } from 'rxjs';
+ import { ClientProbable } from 'src/app/model/clientProbable';
+import { environment } from '../../../environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientProbableService {
-  private apiUrl = environment.apiUrl;  
+  private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   private getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('access_token'); 
+    const token = localStorage.getItem('access_token');
     return new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
   }
 
+  // Fetch all probable clients
   getClientProbables(): Observable<ClientProbable[]> {
-    const url = `${this.apiUrl}/api/clientprobables`;  
+    const url = `${this.apiUrl}/clientprobables`;
     return this.http.get<ClientProbable[]>(url, { headers: this.getAuthHeaders() });
   }
+
+  // Fetch client probable by ID
+  getClientProbableById(id: number): Observable<ClientProbable> {
+    const url = `${this.apiUrl}/clientprobables/${id}`;
+    return this.http.get<ClientProbable>(url, { headers: this.getAuthHeaders() });
+  }
+
+  // Create a new client probable
+  createClientProbable(client: ClientProbable): Observable<ClientProbable> {
+    const url = `${this.apiUrl}/clientprobables`;
+    return this.http.post<ClientProbable>(url, client, { headers: this.getAuthHeaders() });
+  }
+
+  // Update existing client probable
+  updateClientProbable(id: number, client: ClientProbable): Observable<ClientProbable> {
+    const url = `${this.apiUrl}/clientprobables/${id}`;
+    return this.http.put<ClientProbable>(url, client, { headers: this.getAuthHeaders() });
+  }
 }
+

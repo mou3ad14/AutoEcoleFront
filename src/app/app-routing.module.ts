@@ -11,6 +11,7 @@ import { ClientListComponent } from './component/client-list/client-list.compone
 import { ClientProbableListComponent } from './component/client-probable-list/client-probable-list.component';
 import { EtatDeCaisseListComponent } from './etat-de-caisse-list/etat-de-caisse-list.component';
 import { EtatFinanciereComponent } from './component/etat-financiere/etat-financiere.component';
+import { ClientProbableFormComponent } from './component/client-probable-form/client-probable-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -31,9 +32,9 @@ const routes: Routes = [
       { path: 'clients/add', component: AddClientComponent },
       {path:'clientProbable/list',component:ClientProbableListComponent},
       {path: 'etatDeCaisse', component:EtatDeCaisseListComponent},
-      {path:'etatfinancier',component:EtatFinanciereComponent}
-
-      
+      {path:'etatfinancier',component:EtatFinanciereComponent},
+      { path: 'client-probable-form', component: ClientProbableFormComponent }, // Add new client
+      { path: 'client-probable-form/:id', component: ClientProbableFormComponent } // Update client
       
     ]
   }
