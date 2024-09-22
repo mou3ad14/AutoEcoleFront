@@ -32,10 +32,6 @@
         <button mat-button routerLink="/etatfinancier">Etat Financier</button>
       </mat-list-item>
 
-      <mat-list-item  *ngIf="isAdmin">
-        <mat-icon>attach_money</mat-icon>
-        <button mat-button routerLink="/update-user/1">Etats de caisses</button>
-      </mat-list-item>
 
       <mat-list-item  *ngIf="!isAdmin">
         <mat-icon>account_balance_wallet</mat-icon>
