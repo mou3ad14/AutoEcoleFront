@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="clientProbables" class="mat-elevation-z8">
+<!-- <table mat-table [dataSource]="clientProbables" class="mat-elevation-z8">
   <ng-container matColumnDef="fullName">
     <th mat-header-cell *matHeaderCellDef> Full Name </th>
     <td mat-cell *matCellDef="let client"> {{ client.fullName }} </td>
@@ -29,6 +29,105 @@
     <td mat-cell *matCellDef="let client"> {{ client.commentaire }} </td>
   </ng-container>
 
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table> -->
+<!-- Client List Table -->
+
+<!-- <div class="header">
+  <button mat-raised-button color="primary" (click)="addClient()">Add Client</button>
+</div>
+
+<table mat-table [dataSource]="clients" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="fullName">
+    <th mat-header-cell *matHeaderCellDef> Full Name </th>
+    <td mat-cell *matCellDef="let client"> {{ client.fullName }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="phoneNumber">
+    <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+    <td mat-cell *matCellDef="let client"> {{ client.phoneNumber }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="categorieDemandee">
+    <th mat-header-cell *matHeaderCellDef> Category </th>
+    <td mat-cell *matCellDef="let client"> {{ client.categorieDemandee }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="dateVisite">
+    <th mat-header-cell *matHeaderCellDef> Visit Date </th>
+    <td mat-cell *matCellDef="let client"> {{ client.dateVisite | date }} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let client">
+      <button mat-icon-button color="accent" (click)="editClient(client.id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table> -->
+
+
+<div class="header">
+  <button mat-raised-button color="primary" (click)="addClient()">Add Client</button>
+</div>
+
+<!-- Table for displaying clients -->
+<table mat-table [dataSource]="clients" class="mat-elevation-z8">
+
+  <!-- Full Name Column -->
+  <ng-container matColumnDef="fullName">
+    <th mat-header-cell *matHeaderCellDef> Full Name </th>
+    <td mat-cell *matCellDef="let client"> {{ client.fullName }} </td>
+  </ng-container>
+
+  <!-- Phone Number Column -->
+  <ng-container matColumnDef="phoneNumber">
+    <th mat-header-cell *matHeaderCellDef> Phone Number </th>
+    <td mat-cell *matCellDef="let client"> {{ client.phoneNumber }} </td>
+  </ng-container>
+
+  <!-- Category Column -->
+  <ng-container matColumnDef="categorieDemandee">
+    <th mat-header-cell *matHeaderCellDef> Category </th>
+    <td mat-cell *matCellDef="let client"> {{ client.categorieDemandee }} </td>
+  </ng-container>
+
+  <!-- Visit Date Column -->
+  <ng-container matColumnDef="dateVisite">
+    <th mat-header-cell *matHeaderCellDef> Visit Date </th>
+    <td mat-cell *matCellDef="let client"> {{ client.dateVisite | date }} </td>
+  </ng-container>
+
+  <!-- Visit Time Column -->
+  <ng-container matColumnDef="heureVisite">
+    <th mat-header-cell *matHeaderCellDef> Visit Time </th>
+    <td mat-cell *matCellDef="let client"> {{ client.heureVisite }} </td>
+  </ng-container>
+
+  <!-- Comment Column -->
+  <ng-container matColumnDef="commentaire">
+    <th mat-header-cell *matHeaderCellDef> Comment </th>
+    <td mat-cell *matCellDef="let client"> {{ client.commentaire }} </td>
+  </ng-container>
+
+  <!-- Action Column for Edit Button -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
+    <td mat-cell *matCellDef="let client">
+      <button mat-icon-button color="accent" (click)="editClient(client.id)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Header and Row Definitions -->
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

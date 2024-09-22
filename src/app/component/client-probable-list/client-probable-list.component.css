@@ -1,0 +1,16 @@
+/* Styling for header */
+.header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+/* Optional table styling */
+table {
+  width: 100%;
+}
+
+mat-header-cell,
+mat-cell {
+  padding: 16px;
+}

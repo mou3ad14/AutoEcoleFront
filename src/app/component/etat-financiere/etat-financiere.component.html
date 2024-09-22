@@ -1,4 +1,4 @@
-<div class="search-section">
+<!-- <div class="search-section">
   <mat-form-field>
     <mat-label>Agence</mat-label>
     <mat-select [formControl]="agenceControl">
@@ -16,33 +16,74 @@
   <button mat-raised-button color="primary" (click)="searchEtatDeCaisse()">Search</button>
 </div>
 
-<!-- Displaying Etat de Caisse -->
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <!-- Paiement Column -->
   <ng-container matColumnDef="paiement">
     <th mat-header-cell *matHeaderCellDef> Paiement </th>
     <td mat-cell *matCellDef="let element"> {{element.paiement}} </td>
   </ng-container>
 
-  <!-- Heure Column -->
   <ng-container matColumnDef="heure">
     <th mat-header-cell *matHeaderCellDef> Heure Paiement </th>
     <td mat-cell *matCellDef="let element"> {{element.heurePaiement}} </td>
   </ng-container>
 
-  <!-- Montant Column -->
   <ng-container matColumnDef="montant">
     <th mat-header-cell *matHeaderCellDef> Montant </th>
     <td mat-cell *matCellDef="let element"> {{element.montant}} </td>
   </ng-container>
 
-  <!-- Status Column -->
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef> Status </th>
     <td mat-cell *matCellDef="let element"> {{element.status}} </td>
   </ng-container>
 
-  <!-- Header and Row Declarations -->
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+</table> -->
+
+
+<div>
+  <mat-form-field appearance="fill">
+    <mat-label>Select Agency</mat-label>
+    <mat-select [formControl]="agenceControl">
+      <mat-option *ngFor="let agence of agences" [value]="agence.id">
+        {{ agence.name }}  <!-- Adjust according to your agency object structure -->
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Select Date</mat-label>
+    <input matInput [matDatepicker]="picker" [formControl]="dateControl">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-raised-button (click)="searchEtatDeCaisse()">Search</button>
+
+  <!-- Table to display Etat de Caisse -->
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="paiement">
+      <th mat-header-cell *matHeaderCellDef>Paiement</th>
+      <td mat-cell *matCellDef="let element">{{ element.paiement }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="heurePaiement">
+      <th mat-header-cell *matHeaderCellDef>Heure Paiement</th>
+      <td mat-cell *matCellDef="let element">{{ element.heurePaiement }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="montant">
+      <th mat-header-cell *matHeaderCellDef>Montant</th>
+      <td mat-cell *matCellDef="let element">{{ element.montant }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

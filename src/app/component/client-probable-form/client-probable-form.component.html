@@ -1,0 +1,75 @@
+<!-- <form [formGroup]="clientProbableForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Full Name</mat-label>
+    <input matInput formControlName="fullName" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Phone Number</mat-label>
+    <input matInput formControlName="phoneNumber" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <input matInput formControlName="categorieDemandee" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Visit Date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="dateVisite" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Visit Time</mat-label>
+    <input matInput type="time" formControlName="heureVisite" required>
+  </mat-form-field>
+  
+
+  <mat-form-field appearance="fill">
+    <mat-label>Comment</mat-label>
+    <textarea matInput formControlName="commentaire"></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Save Client</button>
+</form> -->
+
+
+<form [formGroup]="clientProbableForm" (ngSubmit)="onSubmit() ">
+  <mat-form-field appearance="fill">
+    <mat-label>Full Name</mat-label>
+    <input matInput formControlName="fullName" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Phone Number</mat-label>
+    <input matInput formControlName="phoneNumber" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <input matInput formControlName="categorieDemandee" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Visit Date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="dateVisite" required>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Visit Time</mat-label>
+    <input matInput type="time" formControlName="heureVisite" required>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Comment</mat-label>
+    <textarea matInput formControlName="commentaire"></textarea>
+  </mat-form-field>
+
+  <!-- <button mat-raised-button color="primary" type="submit">Save Client</button> -->
+  <button mat-raised-button color="warn" type="submit">Save Client</button>
+
+</form>
