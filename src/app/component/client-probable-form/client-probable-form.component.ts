@@ -67,12 +67,11 @@
 //     }
 //   }
 // }
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ClientProbableService } from 'src/app/service/clientProbableService/client-probable.service';
 import { ClientProbable } from 'src/app/model/clientProbable';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-probable-form',
@@ -81,10 +80,14 @@ import { Router } from '@angular/router';
 })
 export class ClientProbableFormComponent implements OnInit {
   clientProbableForm: FormGroup;
-  isEditMode = false; // Toggle based on edit or create mode
-  clientId?: number; // To store the ID of the client being edited
+  isEditMode = false; 
+  clientId?: number; 
 
-  constructor(private fb: FormBuilder, private clientProbableService: ClientProbableService,    private router: Router
+  constructor(
+    private fb: FormBuilder,
+    private clientProbableService: ClientProbableService,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.clientProbableForm = this.fb.group({
       fullName: ['', Validators.required],
@@ -97,36 +100,54 @@ export class ClientProbableFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.isEditMode && this.clientId) {
-      this.loadClientProbable(this.clientId); // Load client data for editing
-    }
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id) {
+        this.isEditMode = true;
+        this.clientId = +id; 
+        this.loadClientData(this.clientId);
+      }
+    });
   }
 
-  loadClientProbable(id: number): void {
+  loadClientData(id: number) {
     this.clientProbableService.getClientProbableById(id).subscribe(client => {
+      // Ensure dateVisite is a Date object
+      client.dateVisite = new Date(client.dateVisite);
       this.clientProbableForm.patchValue(client);
     });
   }
 
-
   onSubmit(): void {
     const formValue = this.clientProbableForm.value;
-
+  
     const clientProbable: ClientProbable = {
       ...formValue,
       dateVisite: formValue.dateVisite.toISOString().split('T')[0], // Format to YYYY-MM-DD
-      heureVisite: formValue.heureVisite + ':00', // Append seconds for LocalTime format
+      heureVisite: formValue.heureVisite, // Keep it as HH:mm
     };
-
-    // Call the service to create a new client probable
-    this.clientProbableService.createClientProbable(clientProbable).subscribe(
-      () => {
-        // Redirect to the list page after successful addition
-        this.router.navigate(['/clientProbable/list']);
-      },
-      error => {
-        console.error('Error adding client probable', error);
-      }
-    );
+  
+    if (this.isEditMode && this.clientId) {
+      // Update existing client
+      this.clientProbableService.updateClientProbable(this.clientId, clientProbable).subscribe(
+        () => {
+          this.router.navigate(['/clientProbable/list']); // Redirect to the list after update
+        },
+        error => {
+          console.error('Error updating client probable', error);
+        }
+      );
+    } else {
+      // Create new client
+      this.clientProbableService.createClientProbable(clientProbable).subscribe(
+        () => {
+          this.router.navigate(['/clientProbable/list']); // Redirect to the list after successful addition
+        },
+        error => {
+          console.error('Error adding client probable', error);
+        }
+      );
+    }
   }
+  
 }
