@@ -66,10 +66,11 @@ export class ClientProbableService {
     return this.http.post<ClientProbable>(url, client, { headers: this.getAuthHeaders() });
   }
 
-  // Update existing client probable
-  updateClientProbable(id: number, client: ClientProbable): Observable<ClientProbable> {
-    const url = `${this.apiUrl}/clientprobables/${id}`;
-    return this.http.put<ClientProbable>(url, client, { headers: this.getAuthHeaders() });
-  }
+// client-probable.service.ts
+  updateClientProbable(id: number, clientProbable: ClientProbable): Observable<ClientProbable> {
+  const url = `${this.apiUrl}/clientprobables/${id}`; // Ensure the correct endpoint
+  return this.http.put<ClientProbable>(url, clientProbable, { headers: this.getAuthHeaders() });
+}
+
 }
 
