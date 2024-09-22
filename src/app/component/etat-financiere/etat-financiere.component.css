@@ -15,3 +15,9 @@ button {
   margin-top: 20px;
   width: 100%;
 }
+.footer {
+  text-align: right;
+  margin-top: 16px;
+  font-size: 1.1em;
+  font-weight: bold;
+}

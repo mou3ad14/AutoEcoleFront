@@ -106,6 +106,12 @@ export class ClientDataService {
     return this.http.get<any[]>(url, { headers });
   }
   
+  valider(id: number): Observable<any> {
+    const headers = this.getAuthHeaders();
+    const url = `${this.baseUrl3}/etatDeCaisse/${id}/Valider`;
+    return this.http.patch<any>(url, {}, { headers });
+  }
+  
   getEtatDeCaisseByAgence(agenceId: number): Observable<any[]> {
     const headers = this.getAuthHeaders();
     const url = `${this.baseUrl3}/etatDeCaisse/solde/${agenceId}`;
