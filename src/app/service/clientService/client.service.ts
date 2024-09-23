@@ -113,5 +113,16 @@ export class ClientService {
       { headers: this.getAuthHeaders() });
   }
 
+  addExamenTheoriqueToClient(clientCin: string, dateExamTheorique: string): Observable<any> {
+;    return this.http.put(`${this.apiUrl}/${clientCin}/examen-theorique`, dateExamTheorique,
+      { headers: this.getAuthHeaders() });
+  }
+
+  addExamenPratiqueToClient(clientCin: string,  dateExamPratique : string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${clientCin}/examen-pratique`, dateExamPratique,
+      { headers: this.getAuthHeaders() });
+  }
+
+
    
 }
