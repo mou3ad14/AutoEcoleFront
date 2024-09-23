@@ -51,6 +51,13 @@
   <p><strong>Date d'Inscription:</strong> {{ data.dateInscription }}</p>
   <p><strong>Prix Total:</strong> {{ data.prixTotal }}</p>
 
+
+  <div *ngIf="data.listeAttente">
+    <h3>Examens</h3>
+    <p><strong>Date Examen Théorique:</strong> {{ data.dateExamenTheorique }}</p>
+    <p><strong>Date Examen Pratique:</strong> {{ data.dateExamenPratique }}</p>
+  </div>
+  
   <!-- Seances and Payments Section -->
   <h3>Seances Pratiques</h3>
   <ul>
@@ -62,6 +69,8 @@
     <li *ngFor="let seance of data.seancesTheoriques">{{ seance }}</li>
   </ul>
 
+
+
   <h3>Paiements</h3>
   <ul>
     <li *ngFor="let paiement of data.paiements">
@@ -70,6 +79,8 @@
     </li>
     <li *ngIf="data.paiements.length === 0">Aucun paiement enregistré</li>
   </ul>
+
+  
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="addPaiement()">Ajouter un paiement</button>

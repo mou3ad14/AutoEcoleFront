@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class SidenavComponent {
   isAdmin: boolean = false;
   agence: any =0;
+  isCommerciale: boolean = false;
+  isCda: boolean = false;
   constructor(private router: Router) {}
 
 
@@ -17,6 +19,8 @@ export class SidenavComponent {
     const role = localStorage.getItem('role');
     const agence = localStorage.getItem('agence');
     this.isAdmin = role === 'ADMIN'; 
+    this.isCommerciale = role ==='COMMERCIALE';
+    this.isCda = role ==='CHEF_AGENCE';
     this.agence = agence;
   }
   logout() {

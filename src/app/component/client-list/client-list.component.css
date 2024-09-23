@@ -12,3 +12,11 @@ mat-form-field {
 .client-list {
   margin-top: 16px;
 }
+
+.waiting-list-row {
+  background-color: #ffcccb; /* Light red */
+}
+
+tr.mat-row {
+  transition: background-color 0.3s ease;
+}

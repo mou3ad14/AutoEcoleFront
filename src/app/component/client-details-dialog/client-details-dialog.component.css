@@ -1,0 +1,103 @@
+/* Container styling */
+mat-dialog-content {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+  }
+  
+  /* Title styling */
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #4A90E2;
+  }
+  
+  /* Section headers */
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 20px;
+    color: #333;
+    border-bottom: 2px solid #4A90E2;
+    padding-bottom: 5px;
+  }
+  
+  /* Details styling */
+  p {
+    font-size: 16px;
+    margin: 5px 0;
+    color: #555;
+  }
+  
+  p strong {
+    color: #333;
+  }
+  
+  /* List styling */
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+  }
+  
+  ul li {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Button styling */
+  mat-dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  button[mat-button] {
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+  }
+  
+  button[mat-button]:hover {
+    background-color: #357ABD;
+  }
+  
+  /* Specific elements */
+  mat-dialog-content ul li p {
+    margin: 0;
+  }
+  
+  mat-dialog-content ul li p strong {
+    display: inline-block;
+    width: 150px;
+    color: #555;
+  }
+  
+  mat-dialog-content ul li:nth-child(odd) {
+    background-color: #f0f8ff;
+  }
+  
+  mat-dialog-actions button[mat-button]:first-child {
+    background-color: #FFB300;
+  }
+  
+  button[mat-button][mat-dialog-close] {
+    background-color: #D32F2F;
+  }
+  
+  button[mat-button][mat-dialog-close]:hover {
+    background-color: #C62828;
+  }
+  

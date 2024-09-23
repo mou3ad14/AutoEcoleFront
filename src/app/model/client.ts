@@ -20,6 +20,7 @@ export interface Client {
   prixTotal: number;
   paiements: Paiement[];
   agence: Agence;
+  listeAttente: boolean;
 }
 
 export enum TypeClient {
