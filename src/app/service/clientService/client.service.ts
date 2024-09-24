@@ -48,7 +48,7 @@
 
 
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Client } from '../../model/client';
 import { environment } from '../../../environment'; 
@@ -114,15 +114,22 @@ export class ClientService {
   }
 
   addExamenTheoriqueToClient(clientCin: string, dateExamTheorique: string): Observable<any> {
-;    return this.http.put(`${this.apiUrl}/${clientCin}/examen-theorique`, dateExamTheorique,
-      { headers: this.getAuthHeaders() });
-  }
+    const params = new HttpParams().set('dateExamTheorique', dateExamTheorique);
+    return this.http.put(`${this.apiUrl}/${clientCin}/examen-theorique`, null, {
+      headers: this.getAuthHeaders(),
+      params: params
+    });
+}
+
 
   addExamenPratiqueToClient(clientCin: string,  dateExamPratique : string): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${clientCin}/examen-pratique`, dateExamPratique,
-      { headers: this.getAuthHeaders() });
-  }
+    const params = new HttpParams().set('dateExamPratique', dateExamPratique);
 
+    return this.http.put(`${this.apiUrl}/${clientCin}/examen-pratique`, null,{
+      headers: this.getAuthHeaders(),
+      params: params
+    });
+  } 
 
    
 }

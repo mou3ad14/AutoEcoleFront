@@ -37,9 +37,11 @@
     </li>
     <li *ngIf="data.paiements.length === 0">Aucun paiement enregistré</li>
   </ul>
+  <p><strong>Montant payé:</strong> {{ data.montant }}</p>
+
 
   <!-- Date Pickers for Examens -->
-  <mat-card>
+  <mat-card *ngIf="data.listeAttente">
     <mat-form-field>
       <input matInput [matDatepicker]="theoriquePicker" placeholder="Sélectionner la date Examen Théorique" [(ngModel)]="dateExamenTheorique">
       <mat-datepicker-toggle matSuffix [for]="theoriquePicker"></mat-datepicker-toggle>
@@ -48,7 +50,7 @@
     <button mat-button (click)="addExamenTheorique()">Ajouter Examen Théorique</button>
   </mat-card>
 
-  <mat-card>
+  <mat-card *ngIf="data.dateExamenTheorique">
     <mat-form-field>
       <input matInput [matDatepicker]="pratiquePicker" placeholder="Sélectionner la date Examen Pratique" [(ngModel)]="dateExamenPratique">
       <mat-datepicker-toggle matSuffix [for]="pratiquePicker"></mat-datepicker-toggle>

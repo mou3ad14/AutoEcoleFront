@@ -65,7 +65,7 @@ export class ClientDetailsDialogComponent {
 
   addExamenTheorique(): void {
     if (this.dateExamenTheorique) {
-      const formattedDate = this.datePipe.transform(this.dateExamenTheorique, 'yyyy-MM-dd');
+      const formattedDate =  this.datePipe.transform(this.dateExamenTheorique, 'yyyy-MM-dd');
       if (formattedDate) {
 
       this.clientService.addExamenTheoriqueToClient(this.data.cin, formattedDate)
