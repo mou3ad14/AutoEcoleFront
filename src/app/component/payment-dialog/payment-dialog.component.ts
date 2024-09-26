@@ -7,15 +7,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./payment-dialog.component.css']
 })
 export class PaymentDialogComponent {
-  montant!: number; // To store the input amount
-
+  montant!: number; 
   constructor(
     public dialogRef: MatDialogRef<PaymentDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
-  // Method to close the dialog and return the montant
-  onAdd(): void {
+    onAdd(): void {
     if (this.montant > 0) {
       this.dialogRef.close(this.montant);
     }

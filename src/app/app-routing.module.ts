@@ -33,9 +33,8 @@ const routes: Routes = [
       {path:'clientProbable/list',component:ClientProbableListComponent},
       {path: 'etatDeCaisse', component:EtatDeCaisseListComponent},
       {path:'etatfinancier',component:EtatFinanciereComponent},
-      { path: 'client-probable-form', component: ClientProbableFormComponent }, // Add new client
-      { path: 'client-probable-form/:id', component: ClientProbableFormComponent } // Update client
-      
+      { path: 'client-probable-form', component: ClientProbableFormComponent },    
+      { path: 'client-probable-form/:id', component: ClientProbableFormComponent }       
     ]
   }
 ];

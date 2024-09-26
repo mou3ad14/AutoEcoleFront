@@ -3,8 +3,7 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientService } from 'src/app/service/clientService/client.service';
-import { PaymentDialogComponent } from '../payment-dialog/payment-dialog.component'; // Import the dialog component
-import { DatePipe } from '@angular/common';
+import { PaymentDialogComponent } from '../payment-dialog/payment-dialog.component'; import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-client-details-dialog',
@@ -23,12 +22,10 @@ export class ClientDetailsDialogComponent {
     private datePipe: DatePipe
   ) {}
 
-  // Method to open the payment dialog
-  addPaiement(): void {
+    addPaiement(): void {
     const dialogRef = this.dialog.open(PaymentDialogComponent, {
       width: '300px',
-      data: { id: this.data.id } // Pass any relevant data here
-    });
+      data: { id: this.data.id }     });
 
     
 
@@ -50,8 +47,7 @@ export class ClientDetailsDialogComponent {
  
   
 
-  // Method to handle adding a theoretical session
-  addSeanceTheorique(): void {
+    addSeanceTheorique(): void {
     this.clientService.addSeanceTheoriqueToClient(this.data.cin)
       .subscribe(
         (response) => {

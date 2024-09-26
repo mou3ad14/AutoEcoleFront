@@ -9,8 +9,7 @@ export class ClientSearchbarComponent {
   @Output() searchChanged = new EventEmitter<string>();
   @Output() filterChanged = new EventEmitter<string>();
 
-  cinOptions: string[] = []; // Populate with CIN options as needed
-
+  cinOptions: string[] = []; 
   onSearchChange(event: any): void {
     const searchTerm = event.target.value;
     this.searchChanged.emit(searchTerm);

@@ -73,8 +73,7 @@ export class UpdateUserComponent implements OnInit {
   updateClient() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      const numericId = parseInt(id, 10);  // Convert the id to a number
-
+      const numericId = parseInt(id, 10);  
       const updatedClient: Client = {
         ...this.personalDetailsFormGroup.value,
         ...this.contactDetailsFormGroup.value,

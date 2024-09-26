@@ -21,8 +21,7 @@ export class ClientListComponent implements OnInit {
   constructor(
     private clientService: ClientService,
     private router: Router,
-    private dialog: MatDialog  // Inject MatDialog service
-  ) {}
+    private dialog: MatDialog    ) {}
 
   ngOnInit(): void {
     this.clientService.getClients().subscribe((data) => {
@@ -38,11 +37,9 @@ export class ClientListComponent implements OnInit {
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();  // Set the filter value
-  }
+    this.dataSource.filter = filterValue.trim().toLowerCase();    }
 
-  // Function to view client details for non-admin users
-  onViewClientDetails(cin: string): void {
+    onViewClientDetails(cin: string): void {
       this.clientService.getClientById(cin).subscribe((clientData) => {
         this.dialog.open(ClientDetailsDialogComponent, {
           data: clientData,
