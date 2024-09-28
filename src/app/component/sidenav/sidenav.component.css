@@ -2,6 +2,11 @@
   height: 100%;
   width: 100%;
 }
+.header-container {
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  margin-bottom: 20px; /* Optional: Add space below the header */
+}
 
 .sidenav {
   background: linear-gradient(to bottom right, #cd1777, #00008b);
@@ -16,6 +21,11 @@
 
 mat-nav-list {
   padding: 0;
+}
+.logopanel {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px; /* Add space between the logo and heading */
 }
 
 mat-list-item {

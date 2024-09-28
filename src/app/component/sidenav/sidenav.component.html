@@ -1,5 +1,6 @@
-<mat-sidenav-container class="sidenav-container">
+<!-- <mat-sidenav-container class="sidenav-container">
   <mat-sidenav mode="side" opened class="sidenav">
+    <img class="logopanel" src="../../../assets/img/hafidi2-removebg-preview.png"/>
     <h2>Admin Panel</h2>
     <mat-nav-list>
       <mat-list-item *ngIf="isAdmin" >
@@ -34,6 +35,61 @@
 
 
       <mat-list-item  *ngIf="isCda">
+        <mat-icon>account_balance_wallet</mat-icon>
+        <button mat-button routerLink="/etatDeCaisse">Mon etat de caisse</button>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-icon>exit_to_app</mat-icon>
+        <button mat-button (click)="logout()">Logout</button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content class="main-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav mode="side" opened class="sidenav">
+    <div class="header-container">
+      <img class="logopanel" src="../../../assets/img/hafidi2-removebg-preview.png" />
+      <h2>Admin Panel</h2>
+    </div>
+    <mat-nav-list>
+      <mat-list-item *ngIf="isAdmin">
+        <mat-icon>people</mat-icon>
+        <button mat-button routerLink="/users">Staff</button>
+      </mat-list-item>
+
+      <mat-list-item *ngIf="isAdmin || isCda">
+        <mat-icon>people</mat-icon>
+        <button mat-button routerLink="/clients">Clients</button>
+      </mat-list-item>
+
+      <mat-list-item *ngIf="isAdmin || isCommerciale">
+        <mat-icon>add_circle</mat-icon>
+        <button mat-button routerLink="/clientProbable/list">Clients Probables</button>
+      </mat-list-item>
+
+      <mat-list-item *ngIf="isAdmin">
+        <mat-icon>add_circle</mat-icon>
+        <button mat-button routerLink="/add-user">Ajouter un Membre de staff</button>
+      </mat-list-item>
+
+      <mat-list-item *ngIf="isAdmin || isCda">
+        <mat-icon>add_circle</mat-icon>
+        <button mat-button routerLink="/add-client">Ajouter un client</button>
+      </mat-list-item>
+
+      <mat-list-item *ngIf="isAdmin">
+        <mat-icon>edit</mat-icon>
+        <button mat-button routerLink="/etatfinancier">Etat Financier</button>
+      </mat-list-item>
+
+      <mat-list-item *ngIf="isCda">
         <mat-icon>account_balance_wallet</mat-icon>
         <button mat-button routerLink="/etatDeCaisse">Mon etat de caisse</button>
       </mat-list-item>

@@ -40,6 +40,7 @@ import { DatePipe } from '@angular/common';
 import { ClientProbableFormComponent } from './component/client-probable-form/client-probable-form.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialog.component';
 @NgModule({
   declarations: [
     
@@ -59,7 +60,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     EtatDeCaisseListComponent,
     PaymentDialogComponent,
     EtatFinanciereComponent,
-    ClientProbableFormComponent
+    ClientProbableFormComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     

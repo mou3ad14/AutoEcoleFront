@@ -116,6 +116,9 @@ export class ClientDataService {
     return this.http.get<any[]>(this.apiUrlh);
   }
 
-
+  isAdmin(): boolean {
+    const role = localStorage.getItem('role');
+    return role === 'ADMIN';
+  }
 
 }
