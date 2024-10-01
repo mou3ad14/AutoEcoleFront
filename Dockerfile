@@ -1,30 +1,23 @@
-# Use an official Node.js runtime as a parent image
-FROM node:16 AS build
-
-# Set the working directory
+# Build stage
+FROM node:16 as build
 WORKDIR /app
-
-# Copy the package.json and package-lock.json
 COPY package*.json ./
-
-# Install the dependencies
 RUN npm install
-
-# Copy the rest of the application files
 COPY . .
-
-# Build the Angular app
 RUN npm run build
 
-# Use Nginx to serve the app
+# Production stage
 FROM nginx:alpine
 
 # Copy the build files to Nginx
 COPY --from=build /app/dist/auto-ecole-front /usr/share/nginx/html
-COPY /nginx.conf  /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf.template
 
-# Expose port 80
-EXPOSE 80
+# Use environment variable to specify the backend URL at runtime
+ENV BACKEND_URL=http://81.0.247.161:8080
 
-# Start Nginx
+# Copy and set the entrypoint script
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["nginx", "-g", "daemon off;"]

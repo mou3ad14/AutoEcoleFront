@@ -119,6 +119,23 @@
           <mat-label>avance</mat-label>
           <input matInput formControlName="montant" type="number" />
         </mat-form-field>
+
+        <ng-container *ngIf="isAdmin; else nonAdminAgence">
+    <mat-form-field appearance="fill">
+      <mat-label>Agence d'Inscription</mat-label>
+      <mat-select formControlName="agenceId">
+        <mat-option *ngFor="let agence of agences" [value]="agence.id">
+          {{agence.intituleAgence}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </ng-container>
+  <ng-template #nonAdminAgence>
+    <mat-form-field appearance="fill">
+      <mat-label>Agence d'Inscription</mat-label>
+      <input matInput [value]="agenceInscription" readonly />
+    </mat-form-field>
+  </ng-template>
         
         <button mat-button matStepperPrevious>RETOUR</button>
         <button mat-raised-button color="primary" type="submit" [disabled]="addClientForm.invalid">

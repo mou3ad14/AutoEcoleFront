@@ -11,9 +11,9 @@ import { Router } from '@angular/router';
 })
 export class AddClientComponent implements OnInit {
   addClientForm!: FormGroup;
-  agences$: Observable<any[]> | undefined;
+  agences: any[] = [];
   isAdmin: boolean = false;
-
+  agenceInscription: any;
 
   constructor(
     private fb: FormBuilder,
@@ -22,11 +22,15 @@ export class AddClientComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.agenceInscription = localStorage.getItem('agence');
     const role = localStorage.getItem('role');
-      this.isAdmin = role === 'admin';
+    this.isAdmin = role === 'ADMIN';
 
-      this.agences$ = this.clientDataService.getAgences();
-      this.addClientForm = this.fb.group({
+    if (this.isAdmin) {
+      this.loadAgences();
+    }
+
+    this.addClientForm = this.fb.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
       cin: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9]+$')]],
@@ -38,9 +42,20 @@ export class AddClientComponent implements OnInit {
       typeClient: ['NORMAL', Validators.required],
       dateInscription: [{ value: new Date().toISOString().substring(0, 10), disabled: !this.isAdmin }, Validators.required],
       prixTotal: [, Validators.required],
-      agenceId: [localStorage.getItem('agence'), Validators.required],
-      montant:[, Validators.required]
+      agenceId: [{ value: this.agenceInscription, disabled: !this.isAdmin }, Validators.required],
+      montant: [, Validators.required]
     });
+  }
+
+  loadAgences(): void {
+    this.clientDataService.getAgences().subscribe(
+      (agences) => {
+        this.agences = agences;
+      },
+      (error) => {
+        console.error('Error loading agences:', error);
+      }
+    );
   }
 
   getControl(controlName: string): AbstractControl {
@@ -49,7 +64,11 @@ export class AddClientComponent implements OnInit {
 
   onSubmit(): void {
     if (this.addClientForm.valid) {
-      this.clientDataService.createClient(this.addClientForm.value).subscribe(
+      const formValue = {...this.addClientForm.getRawValue()};  // Use getRawValue to include disabled controls
+      if (!this.isAdmin) {
+        formValue.agenceId = this.agenceInscription;
+      }
+      this.clientDataService.createClient(formValue).subscribe(
         (response) => {
           console.log('Client added successfully:', response);
           this.router.navigate(['/clients']);

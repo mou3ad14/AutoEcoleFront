@@ -14,8 +14,31 @@
 
   <div *ngIf="data.listeAttente">
     <h3>Examens</h3>
-    <p><strong>Date Examen Théorique:</strong> {{ data.dateExamenTheorique }}</p>
-    <p><strong>Date Examen Pratique:</strong> {{ data.dateExamenPratique }}</p>
+    <h4>Examen Théorique</h4>
+    <ul>
+      <li *ngFor="let date of data.dateExamenTheorique">{{ date | date:'dd/MM/yyyy' }}</li>
+    </ul>
+    <mat-card *ngIf="canAddTheoriqueExam()">
+      <mat-form-field>
+        <input matInput [matDatepicker]="theoriquePicker" placeholder="Date Examen Théorique" [(ngModel)]="newExamenTheoriqueDate">
+        <mat-datepicker-toggle matSuffix [for]="theoriquePicker"></mat-datepicker-toggle>
+        <mat-datepicker #theoriquePicker></mat-datepicker>
+      </mat-form-field>
+      <button mat-button (click)="addExamenTheorique()">Ajouter Examen Théorique</button>
+    </mat-card>
+
+    <h4>Examen Pratique</h4>
+    <ul>
+      <li *ngFor="let date of data.dateExamenPratique">{{ date | date:'dd/MM/yyyy' }}</li>
+    </ul>
+    <mat-card *ngIf="canAddPratiqueExam()">
+      <mat-form-field>
+        <input matInput [matDatepicker]="pratiquePicker" placeholder="Date Examen Pratique" [(ngModel)]="newExamenPratiqueDate">
+        <mat-datepicker-toggle matSuffix [for]="pratiquePicker"></mat-datepicker-toggle>
+        <mat-datepicker #pratiquePicker></mat-datepicker>
+      </mat-form-field>
+      <button mat-button (click)="addExamenPratique()">Ajouter Examen Pratique</button>
+    </mat-card>
   </div>
 
   <!-- Seances and Payments Section -->
@@ -40,28 +63,9 @@
   <p><strong>Montant payé:</strong> {{ data.montant }}</p>
 
 
-  <!-- Date Pickers for Examens -->
-  <mat-card *ngIf="data.listeAttente">
-    <mat-form-field>
-      <input matInput [matDatepicker]="theoriquePicker" placeholder="Sélectionner la date Examen Théorique" [(ngModel)]="dateExamenTheorique">
-      <mat-datepicker-toggle matSuffix [for]="theoriquePicker"></mat-datepicker-toggle>
-      <mat-datepicker #theoriquePicker></mat-datepicker>
-    </mat-form-field>
-    <button mat-button (click)="addExamenTheorique()">Ajouter Examen Théorique</button>
-  </mat-card>
-
-  <mat-card *ngIf="data.dateExamenTheorique">
-    <mat-form-field>
-      <input matInput [matDatepicker]="pratiquePicker" placeholder="Sélectionner la date Examen Pratique" [(ngModel)]="dateExamenPratique">
-      <mat-datepicker-toggle matSuffix [for]="pratiquePicker"></mat-datepicker-toggle>
-      <mat-datepicker #pratiquePicker></mat-datepicker>
-    </mat-form-field>
-    <button mat-button (click)="addExamenPratique()">Ajouter Examen Pratique</button>
-  </mat-card>
-
 </div>
 
-<div mat-dialog-actions>
+<div mat-dialog-actions *ngIf="!data.listeAttente">
   <button mat-button (click)="addPaiement()">Ajouter un paiement</button>
   <button mat-button mat-dialog-close>Fermer</button>
 </div>
