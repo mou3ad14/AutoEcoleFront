@@ -41,11 +41,12 @@
     </mat-card>
   </div>
 
-  <!-- Seances and Payments Section -->
   <h3>Seances Pratiques</h3>
   <ul>
     <li *ngFor="let seance of data.seancesPratiques">{{ seance }}</li>
   </ul>
+  <button mat-button (click)="addSeanceTheorique()">Ajouter une séance théorique</button>
+
 
   <h3>Seances Théoriques</h3>
   <ul>
