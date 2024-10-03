@@ -23,12 +23,27 @@ export class ClientService {
     });
   }
 
-  getClients(): Observable<Client[]> {
-    return this.http.get<Client[]>(this.apiUrl, { headers: this.getAuthHeaders() });
+  getClients(page: number, size: number, sort: string): Observable<any> {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+
+    if (sort) {
+      params = params.set('sort', sort);
+    }
+
+    return this.http.get<any>(this.apiUrl, { 
+      headers: this.getAuthHeaders(), 
+      params: params 
+    });
   }
 
   getClientById(cin: string): Observable<Client> {
     return this.http.get<Client>(`${this.apiUrl}/${cin}`, { headers: this.getAuthHeaders() });
+  }
+
+  getAgenceById(idAgence: string):Observable<any> {
+    return this.http.get<any>(`${this.baseUrl3}/agences/${idAgence}`, { headers: this.getAuthHeaders() });
   }
 
   addSeancePratiqueToClient(cin: string, seancePratique: string): Observable<Client> {

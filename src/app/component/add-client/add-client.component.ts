@@ -14,6 +14,8 @@ export class AddClientComponent implements OnInit {
   agences: any[] = [];
   isAdmin: boolean = false;
   agenceInscription: any;
+  agenceIntitule:any;
+  
 
   constructor(
     private fb: FormBuilder,
@@ -28,6 +30,8 @@ export class AddClientComponent implements OnInit {
 
     if (this.isAdmin) {
       this.loadAgences();
+    } else {
+      this.loadAgenceIntitule();
     }
 
     this.addClientForm = this.fb.group({
@@ -42,7 +46,7 @@ export class AddClientComponent implements OnInit {
       typeClient: ['NORMAL', Validators.required],
       dateInscription: [{ value: new Date().toISOString().substring(0, 10), disabled: !this.isAdmin }, Validators.required],
       prixTotal: [, Validators.required],
-      agenceId: [{ value: this.agenceInscription, disabled: !this.isAdmin }, Validators.required],
+      agenceId: [{  disabled: !this.isAdmin }, Validators.required],
       montant: [, Validators.required]
     });
   }
@@ -62,12 +66,24 @@ export class AddClientComponent implements OnInit {
     return this.addClientForm.get(controlName)!;
   }
 
+  loadAgenceIntitule(): void {
+    this.clientDataService.getAgenceById(this.agenceInscription).subscribe(
+      (agence) => {
+        this.agenceIntitule = agence.intituleAgence;
+      },
+      (error) => {
+        console.error('Error loading agence intitule:', error);
+      }
+    );
+  }
+
   onSubmit(): void {
     if (this.addClientForm.valid) {
       const formValue = {...this.addClientForm.getRawValue()};  // Use getRawValue to include disabled controls
       if (!this.isAdmin) {
         formValue.agenceId = this.agenceInscription;
       }
+     
       this.clientDataService.createClient(formValue).subscribe(
         (response) => {
           console.log('Client added successfully:', response);

@@ -92,12 +92,18 @@ export class EtatFinanciereComponent implements OnInit {
     );
   }
 
-    validerEtatDeCaisse(): void {
+  validerEtatDeCaisse(): void {
     if (this.etatDeCaisseId) {
       this.clientDataService.valider(this.etatDeCaisseId).subscribe(
-        response => console.log('Validation successful', response),
-        error => console.error('Failed to validate Etat de Caisse', error)
+        response => {
+          console.log('Validation successful', response);
+          window.location.reload();
+        },
+        error => {
+          console.error('Failed to validate Etat de Caisse', error);
+        }
       );
     }
   }
+  
 }

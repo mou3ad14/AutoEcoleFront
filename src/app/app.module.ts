@@ -34,13 +34,16 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { EtatDeCaisseListComponent } from './etat-de-caisse-list/etat-de-caisse-list.component';
 import { PaymentDialogComponent } from './component/payment-dialog/payment-dialog.component';
 import { DatePipe } from '@angular/common';
-
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpErrorInterceptor } from './core/interceptors/http-error.interceptor';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 import { ClientProbableFormComponent } from './component/client-probable-form/client-probable-form.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 @NgModule({
   declarations: [
     
@@ -66,6 +69,7 @@ import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialo
   imports: [
     
     BrowserModule,
+    MatSnackBarModule,
     AppRoutingModule,
     MatSidenavModule,
     MatListModule,
@@ -84,9 +88,16 @@ import { ConfirmDialogComponent } from './component/confirm-dialog/confirm-dialo
     MatStepperModule,
     MatDialogModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, 
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

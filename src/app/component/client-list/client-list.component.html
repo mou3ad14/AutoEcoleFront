@@ -3,22 +3,22 @@
     <mat-label>Search by CIN</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Enter CIN" />
   </mat-form-field>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-   
+  
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="loadClients()" class="mat-elevation-z8">
     <ng-container matColumnDef="nom">
-      <th mat-header-cell *matHeaderCellDef> Nom </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
       <td mat-cell *matCellDef="let client"> {{client.nom}} </td>
     </ng-container>
     <ng-container matColumnDef="prenom">
-      <th mat-header-cell *matHeaderCellDef> Prénom </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Prénom </th>
       <td mat-cell *matCellDef="let client"> {{client.prenom}} </td>
     </ng-container>
     <ng-container matColumnDef="cin">
-      <th mat-header-cell *matHeaderCellDef> CIN </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> CIN </th>
       <td mat-cell *matCellDef="let client"> {{client.cin}} </td>
     </ng-container>
     <ng-container matColumnDef="telephone">
-      <th mat-header-cell *matHeaderCellDef> Téléphone </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Téléphone </th>
       <td mat-cell *matCellDef="let client"> {{client.telephone}} </td>
     </ng-container>
     <ng-container matColumnDef="actions">
@@ -28,10 +28,13 @@
         <button *ngIf="!isAdmin" mat-button (click)="onViewClientDetails(client.cin)">Détail client</button>
       </td>
     </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <!-- Apply the red class when isListeAttente is true -->
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
         [ngClass]="{'waiting-list-row': row.listeAttente}"></tr>
   </table>
+  <mat-paginator [length]="totalItems"
+                 [pageSize]="50"
+                 [pageSizeOptions]="[20, 50, 75, 100]"
+                 (page)="loadClients()">
+  </mat-paginator>
 </div>
