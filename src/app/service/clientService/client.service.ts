@@ -62,13 +62,13 @@ export class ClientService {
     return this.http.get<any[]>(`${this.baseUrl3}/agences`, { headers: this.getAuthHeaders() });
   }
 
-  addPaiementToClient(clientId: number, montant: number): Observable<any> {
+  addPaiementToClient(clientId: number, montant: number, agence: number): Observable<any> {
     const paiement = {
       montant: montant,
       heurePaiement: new Date().toISOString() 
     };
 
-    return this.http.post(`${this.apiUrl}/${clientId}/paiements`, JSON.stringify(paiement)
+    return this.http.post(`${this.apiUrl}/${clientId}/${agence}/paiements`, JSON.stringify(paiement)
     , { headers: this.getAuthHeaders() });
   }
 

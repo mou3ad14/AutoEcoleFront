@@ -19,7 +19,7 @@ export class ClientDetailsDialogComponent {
   newExamenPratiqueDate: Date | undefined;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public data: any, 
     private dialogRef: MatDialogRef<ClientDetailsDialogComponent>,     private clientService: ClientService,
     private dialog: MatDialog,
     private datePipe: DatePipe,
@@ -31,9 +31,10 @@ export class ClientDetailsDialogComponent {
       data: { id: this.data.id }
     });
 
+
     dialogRef.afterClosed().subscribe((montant) => {
       if (montant) {
-        this.clientService.addPaiementToClient(this.data.id, montant)
+        this.clientService.addPaiementToClient(this.data.id, montant, this.data.agencePaiement)
           .subscribe(
             (response) => {
               console.log('Paiement added:', response);

@@ -30,7 +30,7 @@ export class ClientListComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     const role = localStorage.getItem('role');
-    this.isAdmin = role === 'admin';
+    this.isAdmin = role === 'ADMIN';
   }
 
   ngAfterViewInit() {
@@ -66,9 +66,14 @@ export class ClientListComponent implements OnInit, AfterViewInit {
   }
 
   onViewClientDetails(cin: string): void {
+    const agencePaiementFromLocalStorage = localStorage.getItem('agence');
+    
     this.clientService.getClientById(cin).subscribe((clientData) => {
+      const agencePaiement = this.isAdmin ? clientData.agence.id : agencePaiementFromLocalStorage;
+      const dataToSend = { ...clientData, agencePaiement };
+      console.log(dataToSend);
       this.dialog.open(ClientDetailsDialogComponent, {
-        data: clientData,
+        data: dataToSend,
         width: '400px'
       });
     });

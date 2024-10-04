@@ -25,7 +25,7 @@
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let client">
         <button *ngIf="isAdmin" mat-button (click)="onUpdateClient(client.cin)">Mettre à jour</button>
-        <button *ngIf="!isAdmin" mat-button (click)="onViewClientDetails(client.cin)">Détail client</button>
+        <button  mat-button (click)="onViewClientDetails(client.cin)">Détail client</button>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
