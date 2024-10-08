@@ -7,6 +7,8 @@ export interface Client {
   nom: string;
   prenom: string;
   cin: string;
+  numPermis: string;
+  typePermis: string;
   montant: number;
   typeClient: TypeClient;
   seancesPratiques: LocalDateTime[];
@@ -21,6 +23,7 @@ export interface Client {
   paiements: Paiement[];
   agence: Agence;
   listeAttente: boolean;
+  nbreSeancesPratiques: number;
 }
 
 export enum TypeClient {

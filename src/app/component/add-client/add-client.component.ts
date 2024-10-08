@@ -47,7 +47,10 @@ export class AddClientComponent implements OnInit {
       dateInscription: [{ value: new Date().toISOString().substring(0, 10), disabled: !this.isAdmin }, Validators.required],
       prixTotal: [, Validators.required],
       agenceId: [{  disabled: !this.isAdmin }, Validators.required],
-      montant: [, Validators.required]
+      montant: [, Validators.required],
+      typePermis: ['', Validators.required],
+      nbreSeancesPratiques: ['', Validators.required],
+      numPermis: ['', Validators.pattern(/^\d{2}\/\d+$/)],
     });
   }
 

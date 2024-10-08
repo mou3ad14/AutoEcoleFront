@@ -5,12 +5,15 @@
   <p><strong>Prénom:</strong> {{ data.prenom }}</p>
   <p><strong>CIN:</strong> {{ data.cin }}</p>
   <p><strong>Téléphone:</strong> {{ data.telephone }}</p>
+  <p><strong>Type:</strong> {{ data.typePermis }}</p>
+  <p><strong>Numero:</strong> {{ data.numPermis }}</p>
   <p><strong>Email:</strong> {{ data.email }}</p>
   <p><strong>Adresse:</strong> {{ data.adresse }}</p>
   <p><strong>Date de Naissance:</strong> {{ data.dateNaissance }}</p>
   <p><strong>Lieu de Naissance:</strong> {{ data.lieuNaissance }}</p>
   <p><strong>Date d'Inscription:</strong> {{ data.dateInscription }}</p>
   <p><strong>Prix Total:</strong> {{ data.prixTotal }}</p>
+  <p><strong>Nombre de Séances Pratiques:</strong> {{ data.nbreSeancesPratiques }}</p>
 
   <div *ngIf="data.listeAttente">
     <h3>Examens</h3>
@@ -46,6 +49,7 @@
     <li *ngFor="let seance of data.seancesPratiques">{{ seance }}</li>
   </ul>
   <button mat-button (click)="addSeanceTheorique()">Ajouter une séance théorique</button>
+
 
 
   <h3>Seances Théoriques</h3>

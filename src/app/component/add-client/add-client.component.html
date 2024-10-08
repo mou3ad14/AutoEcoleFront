@@ -1,67 +1,9 @@
-<!-- add-client.component.html
 <mat-card class="add-client-card">
   <h2><mat-icon>person_add</mat-icon> Ajouter Nouveau Client</h2>
   <form [formGroup]="addClientForm" (ngSubmit)="onSubmit()">
     <mat-horizontal-stepper [linear]="true">
-      <mat-step [stepControl]="addClientForm.get('nom')!.value">
-        <ng-template matStepLabel>Informations Personnelles</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Nom</mat-label>
-          <input matInput formControlName="nom" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Prénom</mat-label>
-          <input matInput formControlName="prenom" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>CIN</mat-label>
-          <input matInput formControlName="cin" />
-        </mat-form-field>
-        <button mat-button matStepperNext>SUIVANT</button>
-      </mat-step>
-
-      <mat-step [stepControl]="addClientForm.get('adresse')!.value">
-        <ng-template matStepLabel>Informations de Contact</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Adresse</mat-label>
-          <input matInput formControlName="adresse" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Téléphone</mat-label>
-          <input matInput formControlName="telephone" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" type="email" />
-        </mat-form-field>
-        <button mat-button matStepperPrevious>RETOUR</button>
-        <button mat-button matStepperNext>SUIVANT</button>
-      </mat-step>
-
-      <mat-step [stepControl]="addClientForm.get('dateInscription')!.value">
-        <ng-template matStepLabel>Détails d'Inscription</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Date d'Inscription</mat-label>
-          <input matInput formControlName="dateInscription" type="date" />
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>Agence d'Inscription</mat-label>
-          <input matInput formControlName="agenceInscription" />
-        </mat-form-field>
-        <button mat-button matStepperPrevious>RETOUR</button>
-        <button mat-raised-button color="primary" type="submit" [disabled]="addClientForm.invalid">
-          <mat-icon>save</mat-icon> Ajouter Client
-        </button>
-      </mat-step>
-    </mat-horizontal-stepper>
-  </form>
-</mat-card> -->
-
-
-<mat-card class="add-client-card">
-  <h2><mat-icon>person_add</mat-icon> Ajouter Nouveau Client</h2>
-  <form [formGroup]="addClientForm" (ngSubmit)="onSubmit()">
-    <mat-horizontal-stepper [linear]="true">
+      
+      <!-- Step 1: Informations Personnelles -->
       <mat-step [stepControl]="getControl('nom')">
         <ng-template matStepLabel>Informations Personnelles</ng-template>
         <mat-form-field appearance="fill">
@@ -76,9 +18,22 @@
           <mat-label>CIN</mat-label>
           <input matInput formControlName="cin" />
         </mat-form-field>
+        <!-- New fields for typePermis and numPermis -->
+        <mat-form-field appearance="fill">
+          <mat-label>Type de Permis</mat-label>
+          <input matInput formControlName="typePermis" />
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Numéro de Permis</mat-label>
+          <input matInput formControlName="numPermis" placeholder="ex: 10/11111" />
+          <mat-error *ngIf="addClientForm.get('numPermis')?.hasError('pattern')">
+            Format invalide, doit être comme xx/xxxxxx
+          </mat-error>
+        </mat-form-field>        
         <button mat-button matStepperNext>SUIVANT</button>
       </mat-step>
 
+      <!-- Step 2: Informations de Contact -->
       <mat-step [stepControl]="getControl('adresse')">
         <ng-template matStepLabel>Informations de Contact</ng-template>
         <mat-form-field appearance="fill">
@@ -105,6 +60,7 @@
         <button mat-button matStepperNext>SUIVANT</button>
       </mat-step>
 
+      <!-- Step 3: Détails d'Inscription -->
       <mat-step [stepControl]="getControl('dateInscription')">
         <ng-template matStepLabel>Détails d'Inscription</ng-template>
         <mat-form-field appearance="fill">
@@ -116,27 +72,30 @@
           <input matInput formControlName="prixTotal" type="number" />
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>avance</mat-label>
+          <mat-label>Avance</mat-label>
           <input matInput formControlName="montant" type="number" />
         </mat-form-field>
-
+        <!-- New field for nbreSeancesPratiques -->
+        <mat-form-field appearance="fill">
+          <mat-label>Séances Pratiques</mat-label>
+          <input matInput formControlName="nbreSeancesPratiques" type="number" />
+        </mat-form-field>
         <ng-container *ngIf="isAdmin; else nonAdminAgence">
-    <mat-form-field appearance="fill">
-      <mat-label>Agence d'Inscription</mat-label>
-      <mat-select formControlName="agenceId">
-        <mat-option *ngFor="let agence of agences" [value]="agence.id">
-          {{agence.intituleAgence}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </ng-container>
-  <ng-template #nonAdminAgence>
-    <mat-form-field appearance="fill">
-      <mat-label>Agence d'Inscription</mat-label>
-      <input matInput [value]="agenceIntitule" readonly />
-    </mat-form-field>
-  </ng-template>
-        
+          <mat-form-field appearance="fill">
+            <mat-label>Agence d'Inscription</mat-label>
+            <mat-select formControlName="agenceId">
+              <mat-option *ngFor="let agence of agences" [value]="agence.id">
+                {{agence.intituleAgence}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </ng-container>
+        <ng-template #nonAdminAgence>
+          <mat-form-field appearance="fill">
+            <mat-label>Agence d'Inscription</mat-label>
+            <input matInput [value]="agenceIntitule" readonly />
+          </mat-form-field>
+        </ng-template>
         <button mat-button matStepperPrevious>RETOUR</button>
         <button mat-raised-button color="primary" type="submit" [disabled]="addClientForm.invalid">
           <mat-icon>save</mat-icon> Ajouter Client
