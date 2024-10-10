@@ -1,12 +1,25 @@
 .search-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 16px;
+  align-items: center;
+}
+
+.search-field {
+  flex: 1 1 auto; /* Automatically adjust size */
+  min-width: 150px; /* Reduce min-width to make search bars smaller */
+  max-width: 300px; /* Limit the max width */
 }
 
 mat-form-field {
-  width: 100%;
+  width: 100%; /* Ensure form fields take full width of their container */
+}
+
+button[mat-raised-button] {
+  height: 36px;
+  align-self: flex-end;
+  margin-bottom: 1.34375em; /* Align button with mat-form-field */
 }
 
 .client-list {
@@ -19,4 +32,20 @@ mat-form-field {
 
 tr.mat-row {
   transition: background-color 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .search-container {
+    flex-direction: column;
+  }
+
+  .search-field {
+    width: 100%; /* Full width on small screens */
+  }
+
+  button[mat-raised-button] {
+    width: 100%;
+    margin-top: 8px;
+  }
 }

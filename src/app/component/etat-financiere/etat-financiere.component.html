@@ -58,8 +58,14 @@
   
   <div class="footer">
     <strong>Solde Total: </strong>{{ solde | currency: 'Dh': 'symbol': '1.2-2' }}
-    <button *ngIf="dataSource.data.length > 0 && etatDeCaisseStatus !== 'V'" mat-raised-button color="primary" (click)="validerEtatDeCaisse()">
-      Valider
+    <button *ngIf="dataSource.data.length > 0 && etatDeCaisseStatus !== 'V' && !isValidated" 
+            mat-raised-button 
+            color="primary" 
+            (click)="validerEtatDeCaisse()"
+            [disabled]="isLoading">
+      <span *ngIf="isLoading" class="spinner"></span>
+      <span>{{ isLoading ? 'Chargement...' : 'Valider' }}</span>
     </button>
+    <span *ngIf="isValidated" class="validation-success">Validation réussie!</span>
   </div>
 </div>

@@ -37,7 +37,7 @@ export class AddClientComponent implements OnInit {
     this.addClientForm = this.fb.group({
       nom: ['', Validators.required],
       prenom: ['', Validators.required],
-      cin: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9]+$')]],
+      cin: ['', [Validators.required, Validators.pattern('^[A-Z0-9]+$')]],
       dateNaissance: ['', Validators.required],
       lieuNaissance: ['', Validators.required],
       adresse: ['', Validators.required],

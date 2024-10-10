@@ -18,7 +18,10 @@ export class ClientListComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['nom', 'prenom', 'cin', 'telephone', 'actions'];
   isAdmin: boolean = false;
   totalItems: number = 0;
-  
+  searchCin: string = '';
+  searchNom: string = '';
+  searchPrenom: string = '';
+ 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -45,7 +48,6 @@ export class ClientListComponent implements OnInit, AfterViewInit {
     if (this.sort.active && this.sort.direction) {
       sort = `${this.sort.active},${this.sort.direction}`;
     }
-
     this.clientService.getClients(page, size, sort).subscribe((response) => {
       this.dataSource.data = response.content;
       this.totalItems = response.totalElements;
@@ -58,16 +60,49 @@ export class ClientListComponent implements OnInit, AfterViewInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.searchCin = filterValue.trim().toLowerCase();
+  }
+  searchClients() {
+    if (this.searchCin) {
+      this.searchClientByCin();
+    } else if (this.searchNom || this.searchPrenom) {
+      this.clientService.searchClients(this.searchNom, this.searchPrenom).subscribe(
+        (clients) => {
+          this.dataSource.data = clients;
+          this.totalItems = clients.length;
+        },
+        (error) => {
+          console.error('Error searching clients', error);
+          this.dataSource.data = [];
+          this.totalItems = 0;
+        }
+      );
+    } else {
+      this.loadClients();
+    }
+  }
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+  searchClientByCin() {
+    if (this.searchCin) {
+      this.clientService.getClientById(this.searchCin).subscribe(
+        (client) => {
+          this.dataSource.data = [client];
+          this.totalItems = 1;
+        },
+        (error) => {
+          console.error('Client not found', error);
+          this.dataSource.data = [];
+          this.totalItems = 0;
+        }
+      );
+    } else {
+      this.loadClients();
     }
   }
 
   onViewClientDetails(cin: string): void {
     const agencePaiementFromLocalStorage = localStorage.getItem('agence');
-    
+   
     this.clientService.getClientById(cin).subscribe((clientData) => {
       const agencePaiement = this.isAdmin ? clientData.agence.id : agencePaiementFromLocalStorage;
       const dataToSend = { ...clientData, agencePaiement };

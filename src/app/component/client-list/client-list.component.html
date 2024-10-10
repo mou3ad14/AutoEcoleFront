@@ -1,9 +1,26 @@
 <div class="client-list">
-  <mat-form-field class="example-full-width">
-    <mat-label>Search by CIN</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Enter CIN" />
-  </mat-form-field>
-  
+  <div class="search-container">
+    <mat-form-field class="search-field">
+      <mat-label>Search by CIN</mat-label>
+      <input matInput [(ngModel)]="searchCin" placeholder="Enter CIN" (keyup.enter)="searchClientByCin()">
+      <button mat-icon-button matSuffix aria-label="Search" (click)="searchClientByCin()">
+        <mat-icon>search</mat-icon>
+      </button>
+      
+    </mat-form-field>
+
+    <mat-form-field class="search-field">
+      <mat-label>Search by Name</mat-label>
+      <input matInput [(ngModel)]="searchNom" placeholder="Enter Name" (keyup.enter)="searchClients()">
+    </mat-form-field>
+
+    <mat-form-field class="search-field">
+      <mat-label>Search by Surname</mat-label>
+      <input matInput [(ngModel)]="searchPrenom" placeholder="Enter Surname" (keyup.enter)="searchClients()">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="searchClients()">Search</button>
+  </div>
   <table mat-table [dataSource]="dataSource" matSort (matSortChange)="loadClients()" class="mat-elevation-z8">
     <ng-container matColumnDef="nom">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
@@ -25,7 +42,7 @@
       <th mat-header-cell *matHeaderCellDef> Actions </th>
       <td mat-cell *matCellDef="let client">
         <button *ngIf="isAdmin" mat-button (click)="onUpdateClient(client.cin)">Mettre à jour</button>
-        <button  mat-button (click)="onViewClientDetails(client.cin)">Détail client</button>
+        <button mat-button (click)="onViewClientDetails(client.cin)">Détail client</button>
       </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

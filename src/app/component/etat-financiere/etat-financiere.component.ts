@@ -17,6 +17,8 @@ export class EtatFinanciereComponent implements OnInit {
   etatDeCaisseStatus: string = "";  
     agenceControl = new FormControl();
   dateControl = new FormControl();
+  isLoading: boolean = false; 
+  isValidated: boolean = false;
 
   constructor(private clientDataService: ClientDataService, private datePipe: DatePipe) {}
 
@@ -94,13 +96,22 @@ export class EtatFinanciereComponent implements OnInit {
 
   validerEtatDeCaisse(): void {
     if (this.etatDeCaisseId) {
+      this.isLoading = true;
       this.clientDataService.valider(this.etatDeCaisseId).subscribe(
         response => {
           console.log('Validation successful', response);
-          window.location.reload();
+          this.isLoading = false;
+          this.isValidated = true; // Set to true on successful validation
+          this.etatDeCaisseStatus = 'V'; // Update the status to 'V' (Validated)
+          // Optional: Reload the page after a short delay
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000); // 2 seconds delay before reload
         },
         error => {
           console.error('Failed to validate Etat de Caisse', error);
+          this.isLoading = false;
+          this.isValidated = false; // Ensure it's false in case of error
         }
       );
     }

@@ -17,12 +17,18 @@
         <mat-form-field appearance="fill">
           <mat-label>CIN</mat-label>
           <input matInput formControlName="cin" />
+          <mat-error *ngIf="addClientForm.get('cin')?.hasError('pattern')">
+            CIN Doit etre en majiscule
+          </mat-error>
         </mat-form-field>
-        <!-- New fields for typePermis and numPermis -->
         <mat-form-field appearance="fill">
-          <mat-label>Type de Permis</mat-label>
-          <input matInput formControlName="typePermis" />
-        </mat-form-field>
+            <mat-label>Type de Permis</mat-label>
+            <mat-select formControlName="typePermis">
+              <mat-option value="A">A</mat-option>
+              <mat-option value="B">B</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
         <mat-form-field appearance="fill">
           <mat-label>Numéro de Permis</mat-label>
           <input matInput formControlName="numPermis" placeholder="ex: 10/11111" />

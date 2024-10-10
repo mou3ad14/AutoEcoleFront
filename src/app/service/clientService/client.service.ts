@@ -23,6 +23,17 @@ export class ClientService {
     });
   }
 
+  searchClients(nom?: string, prenom?: string): Observable<Client[]> {
+    let params = new HttpParams();
+    if (nom) params = params.append('nom', nom);
+    if (prenom) params = params.append('prenom', prenom);
+    
+    return this.http.get<Client[]>(`${this.apiUrl}/searchNomPrenom`, { 
+      params: params,
+      headers: this.getAuthHeaders()
+    });
+  }
+
   getClients(page: number, size: number, sort: string): Observable<any> {
     let params = new HttpParams()
       .set('page', page.toString())
